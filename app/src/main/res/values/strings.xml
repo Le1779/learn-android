@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Learn Android</string>
+    <string name="connecting">連線中</string>
+
+    <string name="dialog_permission_hint1">為了搜尋裝置，我們需要您提供位置資訊。</string>
+    <string name="dialog_permission_hint2">(我們只會在搜尋中使用，並且不會儲存。)</string>
+    <string name="dialog_permission_confirm">提供</string>
+    <string name="dialog_permission_cancel">稍後再說</string>
 </resources>
