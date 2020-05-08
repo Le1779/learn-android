@@ -85,6 +85,16 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
         });
     }
 
+    @Override
+    public void connectSuccess() {
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+
+    @Override
+    public void connectFail(String message) {
+
+    }
+
     private void resizeBottomSheet(int screenHeight){
         int peekHeight = (int)(screenHeight * 0.1f);
         behavior.setPeekHeight(peekHeight);

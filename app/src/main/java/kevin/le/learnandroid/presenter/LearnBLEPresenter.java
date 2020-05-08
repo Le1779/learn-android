@@ -27,8 +27,13 @@ public class LearnBLEPresenter extends BasePresenter<LearnBLEContract.View> impl
     private Map<String, BluetoothDevice> bluetoothDeviceMap;
     private Map<String, DeviceInfo> deviceInfoMap;
 
+    private BLEDevice bleDevice;
+    private BLEDevice.DeviceCallback deviceCallback;
+    private BluetoothDevice connectedDevice;
+
     public LearnBLEPresenter(Context context, LearnBLEContract.View view) {
         super(context, view);
+        initBLEDevice();
     }
 
     @Override
@@ -51,6 +56,7 @@ public class LearnBLEPresenter extends BasePresenter<LearnBLEContract.View> impl
 
     @Override
     public void connectDevice(String address) {
+        connectedDevice = bluetoothDeviceMap.get(address);
         BLEDevice.initial().findAndConnect(context, address);
     }
 
@@ -82,7 +88,11 @@ public class LearnBLEPresenter extends BasePresenter<LearnBLEContract.View> impl
     private void foundDevice(ScanResult scanResult){
         BluetoothDevice bluetoothDevice = scanResult.getDevice();
         String address = bluetoothDevice.getAddress();
-        //bluetoothDeviceMap.put(address, bluetoothDevice);
+
+        if(bluetoothDeviceMap == null) {
+            bluetoothDeviceMap = new HashMap<>();
+        }
+        bluetoothDeviceMap.put(address, bluetoothDevice);
 
         if(deviceInfoMap == null) {
             deviceInfoMap = new HashMap<>();
@@ -96,5 +106,49 @@ public class LearnBLEPresenter extends BasePresenter<LearnBLEContract.View> impl
 
         Log.d(this.getClass().getName(), bluetoothDevice.getName() + "\n" + bluetoothDevice.getAddress() + "\n" + scanResult.getRssi());
         view.modifyDeviceList(new ArrayList<>(deviceInfoMap.values()));
+    }
+
+    private void initBLEDevice(){
+        initDeviceCallback();
+        bleDevice = BLEDevice.initial();
+        bleDevice.addObserver(deviceCallback);
+    }
+
+    private void initDeviceCallback(){
+        deviceCallback = new BLEDevice.DeviceCallback() {
+            @Override
+            public void found(int distance) {
+                //not work
+            }
+
+            @Override
+            public void notFound() {
+                //not work
+            }
+
+            @Override
+            public void connected() {
+                DeviceInfo connectDeviceInfo = new DeviceInfo();
+                connectDeviceInfo.setName(connectedDevice.getName());
+                connectDeviceInfo.setAddress(connectedDevice.getAddress());
+                connectDeviceInfo.setConnected(true);
+                view.connectSuccess();
+            }
+
+            @Override
+            public void disconnected() {
+                view.connectFail("disconnected");
+            }
+
+            @Override
+            public void onDataChange(String data) {
+                view.newResponse(data);
+            }
+
+            @Override
+            public void onDataWrite(String data) {
+
+            }
+        };
     }
 }
