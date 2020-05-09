@@ -92,6 +92,7 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultAdapter.Vi
         }
 
         isConnecting = false;
+        clickViewHolder.textView_device_status.setText("");
         clickViewHolder.progressBar_connecting.setVisibility(View.GONE);
     }
 

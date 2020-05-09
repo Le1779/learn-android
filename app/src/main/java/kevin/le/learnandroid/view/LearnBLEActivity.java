@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -38,6 +40,7 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
 
     private EditText editText_command;
     private Button button_send_command;
+    private ScrollView scrollview;
     private TextView textView_response;
 
     @Override
@@ -81,18 +84,37 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
             @Override
             public void run() {
                 textView_response.append(String.format("GET: %s\n", response));
+                scrollview.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
             }
         });
     }
 
     @Override
     public void connectSuccess() {
-        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                scanResultAdapter.stopConnect();
+                textView_bottomSheet_head_device_name.setText(presenter.getConnectedDeviceName());
+                enableAllView();
+            }
+        });
     }
 
     @Override
     public void connectFail(String message) {
-
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scanResultAdapter.stopConnect();
+            }
+        });
     }
 
     private void resizeBottomSheet(int screenHeight){
@@ -117,6 +139,7 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
         editText_command = findViewById(R.id.editText_command);
         button_send_command = findViewById(R.id.button_send_command);
         textView_response = findViewById(R.id.textView_response);
+        scrollview = findViewById(R.id.scrollview);
 
         button_send_command.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +149,8 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
                 textView_response.append(String.format("SEND: %s\n", command));
             }
         });
+
+        disableAllView();
     }
 
     private void initButtonSheet(){
@@ -165,6 +190,8 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
 
     private void initScanComponent(){
         editText_scan_keyword = findViewById(R.id.editText_scan_keyword);
+        editText_scan_keyword.setMovementMethod(new ScrollingMovementMethod());
+
         button_start_scarn = findViewById(R.id.button_start_scarn);
         button_start_scarn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,5 +223,15 @@ public class LearnBLEActivity extends BaseActivity<LearnBLEPresenter> implements
                 presenter.connectDevice(address);
             }
         });
+    }
+
+    private void enableAllView() {
+        button_send_command.setEnabled(true);
+        editText_command.setEnabled(true);
+    }
+
+    private void disableAllView() {
+        button_send_command.setEnabled(false);
+        editText_command.setEnabled(false);
     }
 }

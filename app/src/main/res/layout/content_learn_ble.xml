@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorMain"
     tools:context=".view.LearnBLEActivity"
-    tools:showIn="@layout/activity_learn_ble">
+    tools:showIn="@layout/activity_learn_ble"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:id="@+id/textView_send_command_title"
@@ -58,8 +60,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
-    <TextView
-        android:id="@+id/textView_response"
+
+    <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
@@ -67,13 +70,20 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="@color/colorSub"
-        android:padding="8dp"
-        android:scrollbars="vertical"
-        android:textColor="@color/colorMain"
         app:layout_constraintBottom_toTopOf="@+id/view_bottom_sheet_area"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <TextView
+            android:id="@+id/textView_response"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:textColor="@color/colorMain" />
+    </ScrollView>
 
     <View
         android:id="@+id/view_bottom_sheet_area"

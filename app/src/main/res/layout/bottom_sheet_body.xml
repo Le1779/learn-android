@@ -17,6 +17,7 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/button_start_scarn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -17,5 +17,6 @@ public interface LearnBLEContract {
         void startScan();
         void connectDevice(String address);
         void sandCommand(String command);
+        String getConnectedDeviceName();
     }
 }

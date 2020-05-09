@@ -67,6 +67,11 @@ public class LearnBLEPresenter extends BasePresenter<LearnBLEContract.View> impl
         }
     }
 
+    @Override
+    public String getConnectedDeviceName() {
+        return connectedDevice.getName();
+    }
+
     private void initScanSettings(){
         scanSettings = new ScanSettings.Builder().setScanMode(SCAN_MODE_LOW_LATENCY).build();
     }
