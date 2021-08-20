@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         List<ListItem> items = new ArrayList<>();
         items.add(new GroupItem("Bluetooth"));
         items.add(new ChildItem(new SubpageData("LearnBLEActivity", "Feature", "Learn BLE")));
+
+        items.add(new GroupItem("UI"));
+        items.add(new ChildItem(new SubpageData("ButtonsActivity", "View", "Buttons")));
         return items;
     }
 }
