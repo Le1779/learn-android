@@ -13,4 +13,7 @@
     <color name="pink">#E91E63</color>
     <color name="dark_blue">#181D2D</color>
     <color name="beige">#E5DFCA</color>
+    <color name="text">#383838</color>
+    <color name="subtitle">#787878</color>
+    <color name="background_white">#F8F8F8</color>
 </resources>
