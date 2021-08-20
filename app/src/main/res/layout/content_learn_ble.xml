@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMain"
+    android:background="@color/beige"
     tools:context=".view.LearnBLEActivity"
     tools:showIn="@layout/activity_learn_ble"
     android:focusable="true"
@@ -18,7 +18,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
         android:text="傳送指令"
-        android:textColor="@color/colorSub"
+        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,11 +39,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/colorSub"
+        android:backgroundTint="@color/dark_blue"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="connected"
-        android:textColor="@color/colorSub"
+        android:textColor="@color/dark_blue"
         app:layout_constraintEnd_toStartOf="@+id/button_send_command"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_send_command_title" />
@@ -53,9 +53,9 @@
         android:layout_width="60dp"
         android:layout_height="0dp"
         android:layout_marginEnd="24dp"
-        android:background="@color/colorSub"
+        android:background="@color/dark_blue"
         android:text="傳送"
-        android:textColor="@color/colorMain"
+        android:textColor="@color/beige"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
@@ -69,7 +69,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/colorSub"
+        android:background="@color/dark_blue"
         app:layout_constraintBottom_toTopOf="@+id/view_bottom_sheet_area"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
             android:padding="8dp"
             android:scrollbars="vertical"
             android:singleLine="false"
-            android:textColor="@color/colorMain" />
+            android:textColor="@color/beige" />
     </ScrollView>
 
     <View
