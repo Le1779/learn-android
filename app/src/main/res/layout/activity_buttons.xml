@@ -62,4 +62,14 @@
         </LinearLayout>
     </kevin.le.learnandroid.view.components.ShadowConstraintLayout>
 
+    <kevin.le.learnandroid.view.components.ShadowButton
+        android:id="@+id/shadowButton"
+        android:layout_width="0dp"
+        android:layout_height="72dip"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintWidth_percent="0.45" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

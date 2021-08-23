@@ -11,12 +11,17 @@ import kevin.le.learnandroid.view.components.shadow.ShadowDrawable;
 
 public class ShadowConstraintLayout extends ConstraintLayout {
 
+    public ShadowDrawable shadowDrawable;
+
     public ShadowConstraintLayout(@NonNull Context context) {
         super(context);
+        shadowDrawable = new ShadowDrawable(context);
+        this.setBackground(shadowDrawable);
     }
 
     public ShadowConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.setBackground(new ShadowDrawable(context));
+        shadowDrawable = new ShadowDrawable(context);
+        this.setBackground(shadowDrawable);
     }
 }

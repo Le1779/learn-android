@@ -28,7 +28,8 @@ public class ShadowDrawable extends Drawable {
     private int padding = 29;
     private Path boundsPath;
     private Bitmap shadowBitmap;
-    private Paint boundsPathPaint;
+    private final Paint boundsPathPaint;
+    private int shadowRadius = 25;
 
     public ShadowDrawable(Context context) {
         this.context = context;
@@ -38,12 +39,23 @@ public class ShadowDrawable extends Drawable {
         boundsPathPaint.setColor(backgroundColor);
     }
 
+    public ShadowDrawable(Context context, int shadowRadius) {
+        this(context);
+        this.shadowRadius = shadowRadius;
+    }
+
     public void setCornerRadiusRatio(float ratio) {
         this.cornerRadiusRatio = ratio;
     }
 
     public void setPadding(int padding) {
         this.padding = padding;
+    }
+
+    public void setShadowRadius(int radius) {
+        this.shadowRadius = radius;
+        updateBoundsPath();
+        updateShadowBitmap();
     }
 
     @Override
@@ -116,7 +128,8 @@ public class ShadowDrawable extends Drawable {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.draw(canvas);
-        bitmap = BlurProvider.blur(context, bitmap);
+
+        bitmap = BlurProvider.blur(context, bitmap, shadowRadius);
         shadowBitmap = Bitmap.createScaledBitmap(bitmap, this.getBounds().width(), this.getBounds().height(), true);
     }
 
