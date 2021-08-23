@@ -10,4 +10,5 @@
     <string name="title">Title</string>
     <string name="type">Type</string>
     <string name="brightness_and_temperature">亮度/色溫</string>
+    <string name="fan">風扇</string>
 </resources>

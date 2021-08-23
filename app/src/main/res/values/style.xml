@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Le.Button" parent="android:Widget">
+    <style name="Widget.Le.ShadowButton" parent="android:Widget">
         <item name="android:textAppearance">?android:attr/textAppearanceButton</item>
         <item name="android:minHeight">72dip</item>
         <item name="android:minWidth">112dip</item>

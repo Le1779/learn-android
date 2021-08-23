@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--ShadowConstraintLayout-->
+    <attr name="shadow_constraint_layout_shadow_color" format="color" />
+    <attr name="shadow_constraint_layout_background_color" format="color" />
+
+    <declare-styleable name="ShadowConstraintLayout">
+        <attr name="shadow_constraint_layout_shadow_color" />
+        <attr name="shadow_constraint_layout_background_color" />
+    </declare-styleable>
+
+    <!--ShadowButton-->
+    <attr name="shadow_button_icon" format="reference" />
+    <attr name="shadow_button_title" format="string" />
+    <attr name="shadow_button_text_size" format="dimension" />
+    <attr name="shadow_button_tint" format="color" />
+
+    <declare-styleable name="ShadowButton">
+        <attr name="shadow_button_icon" />
+        <attr name="shadow_button_title" />
+        <attr name="shadow_button_text_size" />
+        <attr name="shadow_button_tint" />
+    </declare-styleable>
+</resources>

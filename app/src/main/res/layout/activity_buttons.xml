@@ -20,56 +20,36 @@
         app:layout_constraintWidth_percent="0.12"
         app:tint="@color/dark_gray_2" />
 
-    <kevin.le.learnandroid.view.components.ShadowConstraintLayout
-        android:id="@+id/button2"
+    <kevin.le.learnandroid.view.components.ShadowButton
+        style="@style/Widget.Le.ShadowButton"
+        android:id="@+id/brightnessAndTemperatureButton"
         android:layout_width="0dp"
-        android:layout_height="72dip"
-        android:layout_marginTop="24dp"
-        android:text="@string/brightness_and_temperature"
-        android:textColor="@color/dark_gray_1"
+        android:layout_height="80dip"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintWidth_percent="0.45">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/brightness_and_temperature"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_light"
-                app:tint="@color/dark_gray_1" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:text="@string/brightness_and_temperature"
-                android:textAlignment="center"
-                android:textColor="@color/dark_gray_1" />
-        </LinearLayout>
-    </kevin.le.learnandroid.view.components.ShadowConstraintLayout>
+        app:layout_constraintWidth_percent="0.45"
+        app:shadow_button_icon="@drawable/ic_light"
+        app:shadow_button_tint="@color/dark_gray_2"
+        app:shadow_button_title="@string/brightness_and_temperature"
+        app:shadow_button_text_size="18sp"
+        app:shadow_constraint_layout_background_color="#F4BF71"
+        app:shadow_constraint_layout_shadow_color="#F4BF71" />
 
     <kevin.le.learnandroid.view.components.ShadowButton
-        android:id="@+id/shadowButton"
+        style="@style/Widget.Le.ShadowButton"
+        android:id="@+id/fanButton"
         android:layout_width="0dp"
-        android:layout_height="72dip"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2"
-        app:layout_constraintWidth_percent="0.45" />
+        android:layout_height="80dip"
+        app:layout_constraintBottom_toBottomOf="@+id/brightnessAndTemperatureButton"
+        app:layout_constraintStart_toEndOf="@+id/brightnessAndTemperatureButton"
+        app:layout_constraintTop_toTopOf="@+id/brightnessAndTemperatureButton"
+        app:layout_constraintWidth_percent="0.45"
+        app:shadow_button_icon="@drawable/ic_fan"
+        app:shadow_button_tint="@color/dark_gray_2"
+        app:shadow_button_title="@string/fan"
+        app:shadow_button_text_size="18sp"
+        app:shadow_constraint_layout_background_color="#FFFFFF"
+        app:shadow_constraint_layout_shadow_color="#20000000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

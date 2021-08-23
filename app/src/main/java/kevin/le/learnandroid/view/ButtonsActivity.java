@@ -14,8 +14,8 @@ public class ButtonsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buttons);
 
-        findViewById(R.id.shadowButton).setOnClickListener(view -> {
-            Log.d(this.getClass().getName(), "Button click!");
+        findViewById(R.id.fanButton).setOnClickListener(view -> {
+            Log.d(this.getClass().getName(), "Fan button click!");
         });
     }
 }

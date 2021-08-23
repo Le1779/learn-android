@@ -3,11 +3,11 @@ package kevin.le.learnandroid.view.components.shadow;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
@@ -21,39 +21,32 @@ import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 
 public class ShadowDrawable extends Drawable {
 
-    private Context context;
-    private float cornerRadiusRatio = 2.0f;
-    private int backgroundColor = Color.parseColor("#F4BF71");
-    private int shadowColor = Color.parseColor("#F4BF71");
-    private int padding = 29;
-    private Path boundsPath;
+    private final Context context;
+    private ShadowAttribute shadowAttribute;
+    private final float bitmapScale = 0.7f;
+    private final int padding;
+    private Rect bounds = new Rect();
     private Bitmap shadowBitmap;
-    private final Paint boundsPathPaint;
-    private int shadowRadius = 25;
+    private Path boundsPath;
+    private Paint boundsPathPaint;
 
-    public ShadowDrawable(Context context) {
+
+    public ShadowDrawable(Context context, ShadowAttribute shadowAttribute) {
         this.context = context;
+        this.shadowAttribute = shadowAttribute;
+        Point offset = shadowAttribute.getOffset();
+        this.padding = (int) ((shadowAttribute.getRadius() + Math.max(offset.x, offset.y))/bitmapScale);
+    }
 
+    public ShadowDrawable(Context context, ShadowAttribute shadowAttribute, int backgroundColor) {
+        this(context, shadowAttribute);
         boundsPathPaint = new Paint(ANTI_ALIAS_FLAG);
         boundsPathPaint.setStyle(Paint.Style.FILL);
         boundsPathPaint.setColor(backgroundColor);
     }
 
-    public ShadowDrawable(Context context, int shadowRadius) {
-        this(context);
-        this.shadowRadius = shadowRadius;
-    }
-
-    public void setCornerRadiusRatio(float ratio) {
-        this.cornerRadiusRatio = ratio;
-    }
-
-    public void setPadding(int padding) {
-        this.padding = padding;
-    }
-
-    public void setShadowRadius(int radius) {
-        this.shadowRadius = radius;
+    public void setShadowAttribute(ShadowAttribute shadowAttribute) {
+        this.shadowAttribute = shadowAttribute;
         updateBoundsPath();
         updateShadowBitmap();
     }
@@ -61,6 +54,7 @@ public class ShadowDrawable extends Drawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
+        this.bounds = bounds;
         updateBoundsPath();
         updateShadowBitmap();
     }
@@ -68,14 +62,17 @@ public class ShadowDrawable extends Drawable {
     @Override
     public void draw(@NonNull Canvas canvas) {
         canvas.save();
-        //clipCanvas(canvas);
+        clipCanvas(canvas);
+
         if (shadowBitmap != null) {
             canvas.drawBitmap(shadowBitmap, 0f, 0f, null);
         }
 
         canvas.restore();
 
-        canvas.drawPath(boundsPath, boundsPathPaint);
+        if (boundsPathPaint != null) {
+            canvas.drawPath(boundsPath, boundsPathPaint);
+        }
     }
 
     @Override
@@ -89,53 +86,67 @@ public class ShadowDrawable extends Drawable {
         return PixelFormat.TRANSLUCENT;
     }
 
-    private void clipCanvas(Canvas canvas) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            canvas.clipOutPath(boundsPath);
-        } else {
-            canvas.clipPath(boundsPath, Region.Op.DIFFERENCE);
-        }
-    }
-
+    /**
+     * 更新邊界，用來切割陰影與繪製元件背景。
+     */
     private void updateBoundsPath() {
+        if (bounds.width() == 0 || bounds.height() == 0) {
+            return;
+        }
+
         Path path = new Path();
-        float left = padding;
-        float top = padding;
-        float right = this.getBounds().width() - padding;
-        float bottom = this.getBounds().height() - padding;
+        float right = bounds.width() - padding;
+        float bottom = bounds.height() - padding;
         float radius = getCornerRadius();
 
-        path.addRoundRect(left, top, right, bottom, radius, radius, Path.Direction.CW);
+        path.addRoundRect((float) padding, (float) padding, right, bottom, radius, radius, Path.Direction.CW);
         path.close();
         boundsPath = path;
     }
 
+    /**
+     * 更新陰影Bitmap，先縮小再放大(bitmapScale)讓陰影更真實。
+     */
     private void updateShadowBitmap() {
-        if (this.getBounds().width() == 0 || this.getBounds().height() == 0) {
+        if (bounds.width() == 0 || bounds.height() == 0) {
             return;
         }
 
-        int offset = 4;
-        float scale = 0.7f;
-        int width = (int) (this.getBounds().width()*scale);
-        int height = (int) (this.getBounds().height()*scale);
-        int padding = (int) (this.padding * scale);
+        int width = (int) (bounds.width()*bitmapScale);
+        int height = (int) (bounds.height()*bitmapScale);
+        int padding = (int) (this.padding * bitmapScale);
+        Point offset = shadowAttribute.getOffset();
+
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(shadowColor);
-        drawable.setBounds(new Rect(padding, padding + offset, width - padding, height - padding + offset));
+        drawable.setColor(shadowAttribute.getColor());
+        drawable.setBounds(new Rect(
+                padding + offset.x,
+                padding + offset.y,
+                width - padding + offset.x,
+                height - padding + offset.y
+        ));
         drawable.setCornerRadius(getCornerRadius());
 
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.draw(canvas);
 
-        bitmap = BlurProvider.blur(context, bitmap, shadowRadius);
-        shadowBitmap = Bitmap.createScaledBitmap(bitmap, this.getBounds().width(), this.getBounds().height(), true);
+        bitmap = BlurProvider.blur(context, bitmap, shadowAttribute.getRadius());
+        shadowBitmap = Bitmap.createScaledBitmap(bitmap, bounds.width(), bounds.height(), true);
     }
 
     private float getCornerRadius() {
-        int width = this.getBounds().width();
-        int height = this.getBounds().height();
-        return Math.min(width*cornerRadiusRatio, height*cornerRadiusRatio);
+        int width = bounds.width();
+        int height = bounds.height();
+        float ratio = 2.0f;
+        return Math.min(width*ratio, height*ratio);
+    }
+
+    private void clipCanvas(Canvas canvas) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            canvas.clipOutPath(boundsPath);
+        } else {
+            canvas.clipPath(boundsPath, Region.Op.DIFFERENCE);
+        }
     }
 }
