@@ -33,5 +33,8 @@ public class ShadowConstraintLayout extends ConstraintLayout {
         shadowAttribute = new ShadowAttribute(shadowColor, shadowRadius, new Point(0, offsetY));
         shadowDrawable = new ShadowDrawable(context, shadowAttribute, backgroundColor, cornerRadiusRatio);
         this.setBackground(shadowDrawable);
+
+        int padding = shadowDrawable.getPadding();
+        this.setPadding(padding, padding, padding, padding);
     }
 }

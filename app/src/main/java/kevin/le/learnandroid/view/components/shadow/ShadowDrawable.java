@@ -56,6 +56,10 @@ public class ShadowDrawable extends Drawable {
         updateShadowBitmap();
     }
 
+    public int getPadding() {
+        return padding;
+    }
+
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
