@@ -6,6 +6,7 @@ public class ShadowAttribute {
     private final int color;
     private int radius;
     private final Point offset;
+    private float bitmapScale = 1;
 
     public ShadowAttribute(int color, int radius, Point offset) {
         this.color = color;
@@ -25,10 +26,15 @@ public class ShadowAttribute {
         return offset;
     }
 
+    public float getBitmapScale() {
+        return bitmapScale;
+    }
+
     private void setRadius(int radius) {
         if (radius < 0) {
             radius = 0;
         } else if (radius > 25) {
+            bitmapScale = 25f/radius;
             radius = 25;
         }
         this.radius = radius;

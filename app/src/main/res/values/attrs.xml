@@ -3,10 +3,16 @@
     <!--ShadowConstraintLayout-->
     <attr name="shadow_constraint_layout_shadow_color" format="color" />
     <attr name="shadow_constraint_layout_background_color" format="color" />
+    <attr name="shadow_constraint_layout_corner_radius_ratio" format="float" type="dimen" />
+    <attr name="shadow_constraint_layout_shadow_radius" format="integer" type="dimen" />
+    <attr name="shadow_constraint_layout_offset_y" format="dimension" />
 
     <declare-styleable name="ShadowConstraintLayout">
         <attr name="shadow_constraint_layout_shadow_color" />
         <attr name="shadow_constraint_layout_background_color" />
+        <attr name="shadow_constraint_layout_corner_radius_ratio" />
+        <attr name="shadow_constraint_layout_shadow_radius" />
+        <attr name="shadow_constraint_layout_offset_y" />
     </declare-styleable>
 
     <!--ShadowButton-->

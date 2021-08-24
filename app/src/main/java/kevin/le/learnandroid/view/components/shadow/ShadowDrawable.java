@@ -23,7 +23,7 @@ public class ShadowDrawable extends Drawable {
 
     private final Context context;
     private ShadowAttribute shadowAttribute;
-    private final float bitmapScale = 0.7f;
+    private float cornerRadiusRatio = 0.5f;
     private final int padding;
     private Rect bounds = new Rect();
     private Bitmap shadowBitmap;
@@ -35,7 +35,7 @@ public class ShadowDrawable extends Drawable {
         this.context = context;
         this.shadowAttribute = shadowAttribute;
         Point offset = shadowAttribute.getOffset();
-        this.padding = (int) ((shadowAttribute.getRadius() + Math.max(offset.x, offset.y))/bitmapScale);
+        this.padding = (int) ((shadowAttribute.getRadius() + Math.max(offset.x, offset.y))/shadowAttribute.getBitmapScale());
     }
 
     public ShadowDrawable(Context context, ShadowAttribute shadowAttribute, int backgroundColor) {
@@ -43,6 +43,11 @@ public class ShadowDrawable extends Drawable {
         boundsPathPaint = new Paint(ANTI_ALIAS_FLAG);
         boundsPathPaint.setStyle(Paint.Style.FILL);
         boundsPathPaint.setColor(backgroundColor);
+    }
+
+    public ShadowDrawable(Context context, ShadowAttribute shadowAttribute, int backgroundColor, float cornerRadiusRatio) {
+        this(context, shadowAttribute, backgroundColor);
+        this.cornerRadiusRatio = cornerRadiusRatio;
     }
 
     public void setShadowAttribute(ShadowAttribute shadowAttribute) {
@@ -112,6 +117,7 @@ public class ShadowDrawable extends Drawable {
             return;
         }
 
+        float bitmapScale = shadowAttribute.getBitmapScale();
         int width = (int) (bounds.width()*bitmapScale);
         int height = (int) (bounds.height()*bitmapScale);
         int padding = (int) (this.padding * bitmapScale);
@@ -138,8 +144,7 @@ public class ShadowDrawable extends Drawable {
     private float getCornerRadius() {
         int width = bounds.width();
         int height = bounds.height();
-        float ratio = 2.0f;
-        return Math.min(width*ratio, height*ratio);
+        return Math.min(width*cornerRadiusRatio, height*cornerRadiusRatio);
     }
 
     private void clipCanvas(Canvas canvas) {

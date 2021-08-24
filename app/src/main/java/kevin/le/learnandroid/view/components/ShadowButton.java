@@ -40,7 +40,7 @@ public class ShadowButton extends ShadowConstraintLayout implements View.OnTouch
         tint = typedArray.getColor(R.styleable.ShadowButton_shadow_button_tint, Color.BLACK);
         typedArray.recycle();
 
-        pressedShadowAttribute = new ShadowAttribute(super.shadowColor, 10, new Point(0, 0));
+        pressedShadowAttribute = new ShadowAttribute(super.shadowColor, 15, new Point(0, 0));
         setOnTouchListener(this);
         generateSubview();
     }
@@ -131,7 +131,7 @@ public class ShadowButton extends ShadowConstraintLayout implements View.OnTouch
         textView.setTextColor(tint);
 
         if (textSize != -1) {
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         }
 
         container.addView(textView);
