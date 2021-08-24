@@ -1,4 +1,4 @@
-package kevin.le.learnandroid.view.components;
+package kevin.le.learnandroid.view.components.shadow;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,7 +18,6 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import kevin.le.learnandroid.R;
-import kevin.le.learnandroid.view.components.shadow.ShadowAttribute;
 
 public class ShadowButton extends ShadowConstraintLayout implements View.OnTouchListener {
 

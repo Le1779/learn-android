@@ -1,4 +1,4 @@
-package kevin.le.learnandroid.view.components;
+package kevin.le.learnandroid.view.components.shadow;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,8 +12,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 
 import kevin.le.learnandroid.R;
-import kevin.le.learnandroid.view.components.shadow.ShadowAttribute;
-import kevin.le.learnandroid.view.components.shadow.ShadowDrawable;
 
 public class ShadowConstraintLayout extends ConstraintLayout {
 
