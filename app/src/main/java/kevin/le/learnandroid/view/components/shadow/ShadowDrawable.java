@@ -56,6 +56,10 @@ public class ShadowDrawable extends Drawable {
         updateShadowBitmap();
     }
 
+    public void setBackgroundColor(int backgroundColor) {
+        boundsPathPaint.setColor(backgroundColor);
+    }
+
     public int getPadding() {
         return padding;
     }
@@ -118,6 +122,11 @@ public class ShadowDrawable extends Drawable {
      */
     private void updateShadowBitmap() {
         if (bounds.width() == 0 || bounds.height() == 0) {
+            return;
+        }
+
+        if (shadowAttribute.getRadius() == 0) {
+            shadowBitmap = null;
             return;
         }
 
