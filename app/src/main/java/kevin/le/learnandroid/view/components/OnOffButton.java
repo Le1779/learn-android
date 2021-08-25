@@ -1,9 +1,7 @@
 package kevin.le.learnandroid.view.components;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;

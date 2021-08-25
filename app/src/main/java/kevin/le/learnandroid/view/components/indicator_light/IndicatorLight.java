@@ -13,7 +13,7 @@ import kevin.le.learnandroid.view.components.shadow.ShadowDrawable;
 
 public class IndicatorLight extends View {
 
-    private ShadowDrawable drawable;
+    private final ShadowDrawable drawable;
     private ShadowAttribute onShadowAttribute;
     private ShadowAttribute offShadowAttribute;
 
