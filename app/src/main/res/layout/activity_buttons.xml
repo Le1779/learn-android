@@ -7,7 +7,7 @@
     tools:context=".view.ButtonsActivity">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/backButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -26,8 +26,8 @@
         android:layout_width="0dp"
         android:layout_height="80dip"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/backButton"
         app:layout_constraintWidth_percent="0.45"
         app:text_button_icon="@drawable/ic_light"
         app:text_button_tint="@color/dark_gray_2"
@@ -60,7 +60,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintDimensionRatio="0.76"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="@+id/backButton"
         app:layout_constraintTop_toBottomOf="@+id/brightnessAndTemperatureButton"
         app:layout_constraintWidth_percent="0.25"
         app:shadow_constraint_layout_background_color="#FFFFFF"

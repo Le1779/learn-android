@@ -3,7 +3,8 @@ package kevin.le.learnandroid.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import kevin.le.learnandroid.R;
 import kevin.le.learnandroid.view.components.OnOffButton;
@@ -11,23 +12,31 @@ import kevin.le.learnandroid.view.components.UVCButton;
 
 public class ButtonsActivity extends AppCompatActivity {
 
+    private OnOffButton onOffButton;
+    private UVCButton uvcButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buttons);
 
-        findViewById(R.id.fanButton).setOnClickListener(view -> {
-            Log.d(this.getClass().getName(), "Fan button click!");
-        });
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(view -> finish());
 
-        findViewById(R.id.onOffButton).setOnClickListener(view -> {
-            OnOffButton button = (OnOffButton) view;
-            button.setOn(!button.isOn());
-        });
+        onOffButton = findViewById(R.id.onOffButton);
+        uvcButton = findViewById(R.id.uvcButton);
 
-        findViewById(R.id.uvcButton).setOnClickListener(view -> {
-            UVCButton button = (UVCButton) view;
-            button.setOn(!button.isOn());
-        });
+        View.OnClickListener listener = getStatusButtonClickListener();
+        onOffButton.setOnClickListener(listener);
+        uvcButton.setOnClickListener(listener);
+        findViewById(R.id.brightnessAndTemperatureButton).setOnClickListener(listener);
+        findViewById(R.id.fanButton).setOnClickListener(listener);
+    }
+
+    private View.OnClickListener getStatusButtonClickListener() {
+        return view -> {
+            onOffButton.setOn(!onOffButton.isOn());
+            uvcButton.setOn(!uvcButton.isOn());
+        };
     }
 }
