@@ -18,6 +18,7 @@ public class ShadowConstraintLayout extends ConstraintLayout {
     public ShadowDrawable shadowDrawable;
     public ShadowAttribute shadowAttribute;
     public final int shadowColor;
+    public final float cornerRadiusRatio;
 
     public ShadowConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -26,7 +27,7 @@ public class ShadowConstraintLayout extends ConstraintLayout {
         shadowColor = typedArray.getColor(R.styleable.ShadowConstraintLayout_shadow_constraint_layout_shadow_color, darkGray);
         int backgroundColor = typedArray.getColor(R.styleable.ShadowConstraintLayout_shadow_constraint_layout_background_color, Color.WHITE);
         int shadowRadius = typedArray.getInt(R.styleable.ShadowConstraintLayout_shadow_constraint_layout_shadow_radius, 25);
-        float cornerRadiusRatio = typedArray.getFloat(R.styleable.ShadowConstraintLayout_shadow_constraint_layout_corner_radius_ratio, 0.5f);
+        cornerRadiusRatio = typedArray.getFloat(R.styleable.ShadowConstraintLayout_shadow_constraint_layout_corner_radius_ratio, 0.5f);
         int offsetY = typedArray.getDimensionPixelOffset(R.styleable.ShadowConstraintLayout_shadow_constraint_layout_offset_y, 4);
         typedArray.recycle();
 

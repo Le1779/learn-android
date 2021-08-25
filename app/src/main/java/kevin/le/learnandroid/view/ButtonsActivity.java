@@ -7,6 +7,7 @@ import android.util.Log;
 
 import kevin.le.learnandroid.R;
 import kevin.le.learnandroid.view.components.OnOffButton;
+import kevin.le.learnandroid.view.components.UVCButton;
 
 public class ButtonsActivity extends AppCompatActivity {
 
@@ -21,6 +22,11 @@ public class ButtonsActivity extends AppCompatActivity {
 
         findViewById(R.id.onOffButton).setOnClickListener(view -> {
             OnOffButton button = (OnOffButton) view;
+            button.setOn(!button.isOn());
+        });
+
+        findViewById(R.id.uvcButton).setOnClickListener(view -> {
+            UVCButton button = (UVCButton) view;
             button.setOn(!button.isOn());
         });
     }
