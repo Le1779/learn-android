@@ -3,7 +3,7 @@ package kevin.le.learnandroid.view.components.shadow;
 import android.graphics.Point;
 
 public class ShadowAttribute {
-    private final int color;
+    private int color;
     private int radius;
     private final Point offset;
     private float bitmapScale = 1;
@@ -30,7 +30,11 @@ public class ShadowAttribute {
         return bitmapScale;
     }
 
-    private void setRadius(int radius) {
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setRadius(int radius) {
         if (radius < 0) {
             radius = 0;
         } else if (radius > 25) {

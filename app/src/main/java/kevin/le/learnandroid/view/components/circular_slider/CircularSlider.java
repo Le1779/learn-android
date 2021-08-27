@@ -7,8 +7,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import kevin.le.learnandroid.R;
 
 public class CircularSlider extends ViewGroup implements View.OnTouchListener {
 
-    private Rect bounds;
+    private final Rect bounds;
     private ThumbView thumb;
     private TrackPath trackPath;
     private TrackDrawable trackDrawable;
@@ -56,27 +54,28 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
             trackDrawable = new TrackDrawable(strokeWidth, strokeColor);
             setBackground(trackDrawable);
         }
-
-        thumb = new ThumbView(getContext());
-        this.addView(thumb);
-        LayoutParams layoutParams = thumb.getLayoutParams();
-        layoutParams.height = 100;
-        layoutParams.width = 100;
-        thumb.setLayoutParams(layoutParams);
-        Log.d(this.getClass().getName(), "height: " + thumb.getLayoutParams().height);
-        Log.d(this.getClass().getName(), "height: " + thumb.getHeight());
     }
 
     public void setValue(float value) {
         this.value = Math.round(value*100)/100f;
-        Log.d(this.getClass().getName(), "value update: " + this.value);
         updateThumbView();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        thumb = new ThumbView(getContext());
+        ViewGroup parent = (ViewGroup) getParent();
+        parent.addView(thumb);
+        LayoutParams layoutParams = thumb.getLayoutParams();
+        layoutParams.height = 120;
+        layoutParams.width = 120;
+        thumb.setLayoutParams(layoutParams);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (changed) {
-            Log.d(this.getClass().getName(), "onLayout left: " + l + " ,top: " + t + " ,right: " + r + " ,bottom: " + b);
             bounds.left = l;
             bounds.top = t;
             bounds.right = r;
@@ -108,10 +107,8 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
         }
 
         Point thumbCenterPointer = trackPath.getPointFromAngle(currentAngle);
-        thumb.setLeft(thumbCenterPointer.x - 20);
-        thumb.setRight(thumbCenterPointer.x + 20);
-        thumb.setTop(thumbCenterPointer.y - 20);
-        thumb.setBottom(thumbCenterPointer.y + 20);
+        thumb.setX(thumbCenterPointer.x + this.getX() + ((View)getParent()).getX() - thumb.getLayoutParams().width/2f);
+        thumb.setY(thumbCenterPointer.y + this.getY() + ((View)getParent()).getY() - thumb.getLayoutParams().height/2f);
     }
 
     @Override
@@ -132,7 +129,9 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
 
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                return x >= thumb.getLeft() && x <= thumb.getRight() && y >= thumb.getTop() && y <= thumb.getBottom();
+                int relativeX = (int) (x + this.getX() + ((View)getParent()).getX());
+                int relativeY = (int) (y + this.getY() + ((View)getParent()).getY());
+                return thumb.getBounds().contains(relativeX, relativeY);
             case MotionEvent.ACTION_MOVE:
                 if (rate >= 0 && rate <=1) {
                     currentAngle = angle;
