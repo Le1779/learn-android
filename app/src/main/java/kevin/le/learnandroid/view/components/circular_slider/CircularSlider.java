@@ -25,6 +25,7 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
     private boolean clockwise = false;
     private int currentAngle = 110;
     private float value = 0;
+    private OnCircularSliderChangeListener listener;
 
     private int strokeWidth;
 
@@ -59,6 +60,13 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
     public void setValue(float value) {
         this.value = Math.round(value*100)/100f;
         updateThumbView();
+        if (listener != null) {
+            listener.onValueChange(this, this.value);
+        }
+    }
+
+    public void setOnCircularSliderChangeListener(OnCircularSliderChangeListener listener) {
+        this.listener = listener;
     }
 
     @Override
