@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import kevin.le.learnandroid.view.ButtonsActivity;
 import kevin.le.learnandroid.view.LearnBLEActivity;
+import kevin.le.learnandroid.view.SliderActivity;
 
 public class IntentFactory {
     public Intent make(Context context, String activityName) {
@@ -12,6 +13,8 @@ public class IntentFactory {
             return new Intent(context, LearnBLEActivity.class);
         } else if ("ButtonsActivity".equals(activityName)) {
             return new Intent(context, ButtonsActivity.class);
+        } else if ("SliderActivity".equals(activityName)) {
+            return new Intent(context, SliderActivity.class);
         }
 
         return null;

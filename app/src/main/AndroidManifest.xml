@@ -21,6 +21,9 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".view.SliderActivity"
+            android:theme="@style/NoTitleBarAppTheme" />
+        <activity
             android:name=".view.ButtonsActivity"
             android:theme="@style/NoTitleBarAppTheme" />
         <activity
