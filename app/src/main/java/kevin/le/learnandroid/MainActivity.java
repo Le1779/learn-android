@@ -12,8 +12,7 @@ import java.util.List;
 
 import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
-import kevin.le.learnandroid.view.ButtonsActivity;
-import kevin.le.learnandroid.view.SliderActivity;
+import kevin.le.learnandroid.view.ScaleActivity;
 import kevin.le.learnandroid.view.subpage_adapter.ChildItem;
 import kevin.le.learnandroid.view.subpage_adapter.GroupItem;
 import kevin.le.learnandroid.view.subpage_adapter.ListItem;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, SliderActivity.class));
+        startActivity(new Intent(this, ScaleActivity.class));
     }
 
     private void initRecyclerView() {
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         items.add(new GroupItem("UI"));
         items.add(new ChildItem(new SubpageData("ButtonsActivity", "View", "Buttons")));
         items.add(new ChildItem(new SubpageData("SliderActivity", "View", "Slider")));
+        items.add(new ChildItem(new SubpageData("ScaleActivity", "View", "Scale")));
         return items;
     }
 }
