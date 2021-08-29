@@ -18,6 +18,10 @@ public class TrackPath {
         this.path = new Path();
     }
 
+    /**
+     * 更新外框。
+     * @param bounds 外框
+     */
     public void updateBounds(RectF bounds) {
         this.bounds = bounds;
         this.centerPoint = new Point((int) (bounds.centerX()), (int) (bounds.centerY()));
@@ -25,6 +29,11 @@ public class TrackPath {
         updatePath();
     }
 
+    /**
+     * 透過一個點來取得與圓心的夾角。
+     * @param point 某一個點
+     * @return 與圓心的夾角
+     */
     public int getAngleFromPoint(Point point) {
         Point origin = new Point(point.x - centerPoint.x, point.y - centerPoint.y);
         double bearingRadians = Math.atan2(origin.y, origin.x);
@@ -32,6 +41,11 @@ public class TrackPath {
         return (int) (bearingDegrees > 0.0 ? bearingDegrees : (360.0 + bearingDegrees));
     }
 
+    /**
+     * 取得滑動的度數，以起始度數為0的角度。
+     * @param angle 角度
+     * @return 滑動的度數
+     */
     public int getOriginAngle(int angle) {
         if (angle < this.angleRange.begin.value) {
             return angle + 360 - this.angleRange.begin.value;
@@ -40,6 +54,11 @@ public class TrackPath {
         return angle - this.angleRange.begin.value;
     }
 
+    /**
+     * 透過角度取得線上的某一點。
+     * @param angle 角度
+     * @return 角度對應的點
+     */
     public Point getPointFromAngle(int angle) {
         double x = radius * Math.cos(new Angle(angle).radians);
         double y = radius * Math.sin(new Angle(angle).radians);

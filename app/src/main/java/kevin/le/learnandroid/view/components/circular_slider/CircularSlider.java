@@ -15,16 +15,15 @@ import androidx.annotation.Nullable;
 
 import kevin.le.learnandroid.R;
 
-public class CircularSlider extends ViewGroup implements View.OnTouchListener {
+public class CircularSlider extends View implements View.OnTouchListener {
 
     private final Rect bounds;
     private ThumbView thumb;
     private TrackPath trackPath;
     private TrackDrawable trackDrawable;
-    private AngleRange angleRange = new AngleRange(new Angle(110), new Angle(140));
+    private AngleRange angleRange = new AngleRange(new Angle(0), new Angle(180));
     private boolean clockwise = false;
-    private int currentAngle = 110;
-    private float value = 0;
+    private int currentAngle = 0;
     private OnCircularSliderChangeListener listener;
 
     private int strokeWidth;
@@ -58,10 +57,10 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
     }
 
     public void setValue(float value) {
-        this.value = Math.round(value*100)/100f;
+        float value1 = Math.round(value * 100) / 100f;
         updateThumbView();
         if (listener != null) {
-            listener.onValueChange(this, this.value);
+            listener.onValueChange(this, value1);
         }
     }
 
@@ -69,13 +68,16 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
         this.listener = listener;
     }
 
+    /**
+     * 在這個元件被載入到頁面上時，將Thumb新增至父容器中。
+     */
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         thumb = new ThumbView(getContext());
         ViewGroup parent = (ViewGroup) getParent();
         parent.addView(thumb);
-        LayoutParams layoutParams = thumb.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = thumb.getLayoutParams();
         layoutParams.height = 120;
         layoutParams.width = 120;
         thumb.setLayoutParams(layoutParams);
@@ -92,33 +94,12 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
         }
     }
 
-    private void updateSubview() {
-        updatePath();
-        updateThumbView();
-    }
-
-    private void updatePath() {
-        trackPath.updateBounds(new RectF(
-                strokeWidth,
-                strokeWidth,
-                bounds.right - bounds.left - strokeWidth,
-                bounds.bottom - bounds.top - strokeWidth
-        ));
-
-        trackDrawable.updateTrackPath(trackPath);
-        invalidate();
-    }
-
-    private void updateThumbView() {
-        if (thumb == null) {
-            return;
-        }
-
-        Point thumbCenterPointer = trackPath.getPointFromAngle(currentAngle);
-        thumb.setX(thumbCenterPointer.x + this.getX() + ((View)getParent()).getX() - thumb.getLayoutParams().width/2f);
-        thumb.setY(thumbCenterPointer.y + this.getY() + ((View)getParent()).getY() - thumb.getLayoutParams().height/2f);
-    }
-
+    /**
+     * 觸碰事件，只有點擊在Thumb上面才觸發事件。
+     * @param view 這個View
+     * @param e Event
+     * @return 是否被點擊
+     */
     @Override
     public boolean onTouch(View view, MotionEvent e) {
         float x = e.getX();
@@ -131,9 +112,6 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
         if (clockwise) {
             rate = 1 - rate;
         }
-        //Log.d(this.getClass().getName(), "angle: " + angle);
-        //Log.d(this.getClass().getName(), "originAngle: " + originAngle);
-
 
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -146,11 +124,41 @@ public class CircularSlider extends ViewGroup implements View.OnTouchListener {
                     this.setValue(rate);
                 }
                 break;
-            case MotionEvent.ACTION_UP:
-
-                break;
         }
 
         return true;
+    }
+
+    private void updateSubview() {
+        updatePath();
+        updateThumbView();
+    }
+
+    /**
+     * 更新拖曳軌跡的路徑。
+     */
+    private void updatePath() {
+        trackPath.updateBounds(new RectF(
+                strokeWidth,
+                strokeWidth,
+                bounds.right - bounds.left - strokeWidth,
+                bounds.bottom - bounds.top - strokeWidth
+        ));
+
+        trackDrawable.updateTrackPath(trackPath);
+        invalidate();
+    }
+
+    /**
+     * 更新Thumb的位置
+     */
+    private void updateThumbView() {
+        if (thumb == null) {
+            return;
+        }
+
+        Point thumbCenterPointer = trackPath.getPointFromAngle(currentAngle);
+        thumb.setX(thumbCenterPointer.x + this.getX() + ((View)getParent()).getX() - thumb.getLayoutParams().width/2f);
+        thumb.setY(thumbCenterPointer.y + this.getY() + ((View)getParent()).getY() - thumb.getLayoutParams().height/2f);
     }
 }
