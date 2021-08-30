@@ -42,4 +42,26 @@
         <attr name="angle_sweep" />
         <attr name="clockwise" />
     </declare-styleable>
+
+    <attr name="scale_width" format="dimension" />
+    <attr name="scale_height" format="dimension" />
+    <attr name="scale_color" format="color" />
+    <attr name="scale_deviation" format="float" type="dimen" />
+    <attr name="unit_divide" format="float" type="dimen" />
+    <attr name="anchor_point" format="integer" type="dimen" />
+    unitDivide
+    <!--CircularScale-->
+    <declare-styleable name="CircularScale">
+        <!--Angle-->
+        <attr name="angle_begin" />
+        <attr name="angle_sweep" />
+        <!--Scale-->
+        <attr name="scale_width" />
+        <attr name="scale_height" />
+        <attr name="scale_color" />
+        <attr name="scale_deviation" />
+
+        <attr name="unit_divide" />
+        <attr name="anchor_point" />
+    </declare-styleable>
 </resources>

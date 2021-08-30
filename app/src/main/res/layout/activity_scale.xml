@@ -20,4 +20,33 @@
         app:layout_constraintWidth_percent="0.12"
         app:tint="@color/dark_gray_2" />
 
+    <kevin.le.learnandroid.view.components.circular_scale.CircularScale
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:angle_begin="110"
+        app:angle_sweep="140"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7"
+        app:scale_width="3dp"
+        app:scale_height="12dp"
+        app:scale_color="#E8E8E8"/>
+
+    <kevin.le.learnandroid.view.components.circular_slider.CircularSlider
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:angle_begin="110"
+        app:angle_sweep="140"
+        app:clockwise="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.55"
+        app:stroke_color="#E8E8E8"
+        app:stroke_width="15" />
 </androidx.constraintlayout.widget.ConstraintLayout>
