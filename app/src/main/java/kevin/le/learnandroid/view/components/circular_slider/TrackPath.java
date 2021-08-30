@@ -18,7 +18,6 @@ public class TrackPath {
 
     public TrackPath(AngleRange angleRange) {
         this.angleRange = angleRange;
-        this.path = new Path();
     }
 
     /**
@@ -70,6 +69,7 @@ public class TrackPath {
     }
 
     private void updatePath() {
+        this.path = new Path();
         this.path.arcTo(bounds, angleRange.begin.value, angleRange.sweep.value);
     }
 }
