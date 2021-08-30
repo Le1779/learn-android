@@ -9,7 +9,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import kevin.le.learnandroid.R;
-import kevin.le.learnandroid.model.angle.Angle;
 import kevin.le.learnandroid.model.angle.AngleRange;
 
 public class CircularScale extends View {
@@ -35,7 +34,7 @@ public class CircularScale extends View {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircularScale);
             int beginAngle = typedArray.getInt(R.styleable.CircularScale_angle_begin, 0);
             int sweepAngle = typedArray.getInt(R.styleable.CircularScale_angle_sweep, 0);
-            angleRange = new AngleRange(new Angle(beginAngle), new Angle(sweepAngle));
+            angleRange = new AngleRange(beginAngle, sweepAngle);
 
             unitDivide = typedArray.getFloat(R.styleable.CircularScale_unit_divide, 0.1f);
             anchorPoint = typedArray.getInt(R.styleable.CircularScale_anchor_point, 5);

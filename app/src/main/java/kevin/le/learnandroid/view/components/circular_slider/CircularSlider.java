@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import kevin.le.learnandroid.R;
-import kevin.le.learnandroid.model.angle.Angle;
 import kevin.le.learnandroid.model.angle.AngleRange;
 
 public class CircularSlider extends View implements View.OnTouchListener {
@@ -23,7 +22,7 @@ public class CircularSlider extends View implements View.OnTouchListener {
     private ThumbView thumb;
     private TrackPath trackPath;
     private TrackDrawable trackDrawable;
-    private AngleRange angleRange = new AngleRange(new Angle(0), new Angle(180));
+    private AngleRange angleRange = new AngleRange(0, 180);
     private boolean clockwise = false;
     private int currentAngle = 0;
     private OnCircularSliderChangeListener listener;
@@ -49,7 +48,7 @@ public class CircularSlider extends View implements View.OnTouchListener {
             clockwise = typedArray.getBoolean(R.styleable.CircularSlider_clockwise, false);
             typedArray.recycle();
 
-            angleRange = new AngleRange(new Angle(beginAngle), new Angle(sweepAngle));
+            angleRange = new AngleRange(beginAngle, sweepAngle);
             currentAngle = clockwise ? (beginAngle + sweepAngle) : beginAngle;
 
             trackPath = new TrackPath(angleRange);
