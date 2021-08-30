@@ -1,4 +1,4 @@
-package kevin.le.learnandroid.view.components.circular_slider;
+package kevin.le.learnandroid.model.angle;
 
 public class AngleRange {
     public Angle begin, sweep;

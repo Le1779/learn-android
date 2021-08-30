@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import kevin.le.learnandroid.R;
+import kevin.le.learnandroid.model.angle.Angle;
+import kevin.le.learnandroid.model.angle.AngleRange;
 
 public class CircularSlider extends View implements View.OnTouchListener {
 

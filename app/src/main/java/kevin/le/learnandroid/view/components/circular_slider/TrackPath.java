@@ -4,6 +4,9 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.RectF;
 
+import kevin.le.learnandroid.model.angle.Angle;
+import kevin.le.learnandroid.model.angle.AngleRange;
+
 
 public class TrackPath {
 
