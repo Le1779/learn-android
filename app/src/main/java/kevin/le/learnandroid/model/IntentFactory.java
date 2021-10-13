@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import kevin.le.learnandroid.view.ButtonsActivity;
+import kevin.le.learnandroid.view.DeviceListActivity;
 import kevin.le.learnandroid.view.LearnBLEActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
 import kevin.le.learnandroid.view.SliderActivity;
@@ -18,6 +19,8 @@ public class IntentFactory {
             return new Intent(context, SliderActivity.class);
         } else if ("ScaleActivity".equals(activityName)) {
             return new Intent(context, ScaleActivity.class);
+        } else if ("DeviceListActivity".equals(activityName)) {
+            return new Intent(context, DeviceListActivity.class);
         }
 
         return null;
