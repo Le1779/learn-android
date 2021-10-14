@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnAndroid"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.DeviceListActivity"></activity>
+        <activity android:name=".view.ShadowImageViewActivity"></activity>
+        <activity android:name=".view.DeviceListActivity" />
         <activity
             android:name=".view.ScaleActivity"
             android:theme="@style/NoTitleBarAppTheme" />

@@ -49,7 +49,7 @@
     <attr name="scale_deviation" format="float" type="dimen" />
     <attr name="unit_divide" format="float" type="dimen" />
     <attr name="anchor_point" format="integer" type="dimen" />
-    unitDivide
+
     <!--CircularScale-->
     <declare-styleable name="CircularScale">
         <!--Angle-->
@@ -63,5 +63,11 @@
 
         <attr name="unit_divide" />
         <attr name="anchor_point" />
+    </declare-styleable>
+
+    <!--ShadowImageView-->
+    <declare-styleable name="ShadowImageView">
+        <attr name="shadowRadius" format="integer" type="dimen" />
+        <attr name="shadowColor" format="color" />
     </declare-styleable>
 </resources>
