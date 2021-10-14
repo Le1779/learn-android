@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kevin.le.learnandroid.R;
+import kevin.le.learnandroid.view.components.indicator_light.IndicatorLight;
 
 public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.ViewHolder> {
 
@@ -28,8 +29,9 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
         int displayWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         viewHolder.itemView.getLayoutParams().width = (int) (displayWidth * 0.7);
 
-        viewHolder.title.setText("Le Device " + i);
-        viewHolder.type.setText("Debug Type");
+        viewHolder.titleTextView.setText("Le Device " + i);
+        viewHolder.typeTextView.setText("Debug Type");
+        viewHolder.statusTextView.setText("在連接範圍內");
 
         viewHolder.infoButton.setOnClickListener(view -> view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP));
     }
@@ -41,15 +43,19 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
-        TextView type;
+        TextView titleTextView;
+        TextView typeTextView;
         ImageButton infoButton;
+        IndicatorLight indicatorLight;
+        TextView statusTextView;
 
         ViewHolder(View v) {
             super(v);
-            title = v.findViewById(R.id.textView_device_list_item_name);
-            type = v.findViewById(R.id.textView_device_list_item_type);
+            titleTextView = v.findViewById(R.id.textView_device_list_item_name);
+            typeTextView = v.findViewById(R.id.textView_device_list_item_type);
             infoButton = v.findViewById(R.id.imageButton_device_list_item_info);
+            indicatorLight = v.findViewById(R.id.indicatorLight);
+            statusTextView = v.findViewById(R.id.textView_device_list_item_status);
         }
     }
 }
