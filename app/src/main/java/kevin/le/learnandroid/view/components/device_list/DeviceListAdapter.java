@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
         viewHolder.titleTextView.setText("Le Device " + i);
         viewHolder.typeTextView.setText("Debug Type");
         viewHolder.statusTextView.setText("在連接範圍內");
+        viewHolder.imageView.setImageResource(i % 2 == 0 ? R.drawable.support_device_debug_group : R.drawable.support_device_debug_fan);
 
         viewHolder.infoButton.setOnClickListener(view -> view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP));
     }
@@ -48,6 +50,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
         ImageButton infoButton;
         IndicatorLight indicatorLight;
         TextView statusTextView;
+        ImageView imageView;
 
         ViewHolder(View v) {
             super(v);
@@ -56,6 +59,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
             infoButton = v.findViewById(R.id.imageButton_device_list_item_info);
             indicatorLight = v.findViewById(R.id.indicatorLight);
             statusTextView = v.findViewById(R.id.textView_device_list_item_status);
+            imageView = v.findViewById(R.id.imageView_devie_list_item);
         }
     }
 }

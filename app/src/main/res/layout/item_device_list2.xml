@@ -92,4 +92,14 @@
         app:layout_constraintEnd_toStartOf="@+id/indicatorLight"
         app:layout_constraintTop_toTopOf="@+id/imageButton_device_list_item_info" />
 
+    <ImageView
+        android:id="@+id/imageView_devie_list_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_device_list_item_name"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_parent_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_parent_left"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_device_list_item_info"
+        tools:srcCompat="@null" />
+
 </kevin.le.learnandroid.view.components.shadow.ShadowConstraintLayout>
