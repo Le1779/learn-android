@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, ShadowImageViewActivity.class));
+        startActivity(new Intent(this, DeviceListActivity.class));
     }
 
     private void initRecyclerView() {

@@ -92,14 +92,18 @@
         app:layout_constraintEnd_toStartOf="@+id/indicatorLight"
         app:layout_constraintTop_toTopOf="@+id/imageButton_device_list_item_info" />
 
-    <ImageView
+    <kevin.le.learnandroid.view.components.shadow.ShadowImageView
         android:id="@+id/imageView_devie_list_item"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_device_list_item_name"
         app:layout_constraintEnd_toStartOf="@+id/guideline_parent_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_parent_left"
         app:layout_constraintTop_toBottomOf="@+id/imageButton_device_list_item_info"
+        app:shadowColor="#38000000"
+        app:shadowRadius="36"
         tools:srcCompat="@null" />
 
 </kevin.le.learnandroid.view.components.shadow.ShadowConstraintLayout>
