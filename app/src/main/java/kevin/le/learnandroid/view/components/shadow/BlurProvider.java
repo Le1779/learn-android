@@ -30,8 +30,9 @@ public class BlurProvider {
         scriptIntrinsicBlur.forEach(output);
         output.copyTo(destination);
 
-        input.destroy();
+        scriptIntrinsicBlur.destroy();
         output.destroy();
+        input.destroy();
         renderScript.destroy();
         return destination;
     }
