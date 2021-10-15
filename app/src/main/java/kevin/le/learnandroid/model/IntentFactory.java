@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import kevin.le.learnandroid.view.ButtonsActivity;
+import kevin.le.learnandroid.view.DeviceInfoAreaActivity;
 import kevin.le.learnandroid.view.DeviceListActivity;
 import kevin.le.learnandroid.view.LearnBLEActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
@@ -24,6 +25,8 @@ public class IntentFactory {
             return new Intent(context, DeviceListActivity.class);
         } else if ("ShadowImageViewActivity".equals(activityName)) {
             return new Intent(context, ShadowImageViewActivity.class);
+        } else if ("DeviceInfoAreaActivity".equals(activityName)) {
+            return new Intent(context, DeviceInfoAreaActivity.class);
         }
 
         return null;

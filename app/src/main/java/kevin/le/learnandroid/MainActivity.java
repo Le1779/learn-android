@@ -12,6 +12,7 @@ import java.util.List;
 
 import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
+import kevin.le.learnandroid.view.DeviceInfoAreaActivity;
 import kevin.le.learnandroid.view.DeviceListActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
 import kevin.le.learnandroid.view.ShadowImageViewActivity;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, DeviceListActivity.class));
+        startActivity(new Intent(this, DeviceInfoAreaActivity.class));
     }
 
     private void initRecyclerView() {
@@ -59,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
         items.add(new ChildItem(new SubpageData("ButtonsActivity", "View", "Buttons")));
         items.add(new ChildItem(new SubpageData("SliderActivity", "View", "Slider")));
         items.add(new ChildItem(new SubpageData("ScaleActivity", "View", "Scale")));
-        items.add(new ChildItem(new SubpageData("DeviceListActivity", "View", "Device List")));
         items.add(new ChildItem(new SubpageData("ShadowImageViewActivity", "View", "Shadow ImageView")));
+        items.add(new ChildItem(new SubpageData("DeviceListActivity", "View", "Device List")));
+        items.add(new ChildItem(new SubpageData("DeviceInfoAreaActivity", "View", "Device Info Area")));
         return items;
     }
 }
