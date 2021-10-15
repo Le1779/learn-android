@@ -21,8 +21,8 @@ public class BlurProvider {
 
         RenderScript renderScript =  RenderScript.create(context);
 
-        final Allocation input = Allocation.createFromBitmap(renderScript, destination);
-        final Allocation output = Allocation.createTyped(renderScript, input.getType());
+        Allocation input = Allocation.createFromBitmap(renderScript, destination);
+        Allocation output = Allocation.createTyped(renderScript, input.getType());
 
         ScriptIntrinsicBlur scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
         scriptIntrinsicBlur.setInput(input);
@@ -30,6 +30,8 @@ public class BlurProvider {
         scriptIntrinsicBlur.forEach(output);
         output.copyTo(destination);
 
+        input.destroy();
+        output.destroy();
         renderScript.destroy();
         return destination;
     }
