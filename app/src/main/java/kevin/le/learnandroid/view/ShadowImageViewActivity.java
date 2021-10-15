@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import kevin.le.learnandroid.R;
 import kevin.le.learnandroid.view.components.shadow.ShadowImageView;
@@ -13,11 +12,15 @@ public class ShadowImageViewActivity extends AppCompatActivity {
 
     private int times = 0;
     private ShadowImageView shadowImageView;
-    private Handler handler=new Handler();
-    private Runnable runnable=new Runnable() {
+    private final Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            shadowImageView.setImageResource(times++ % 2 == 0 ? R.drawable.support_device_debug_group : R.drawable.support_device_debug_fan);
+            shadowImageView.setImageResource(
+                    times++ % 2 == 0 ?
+                            R.drawable.support_device_debug_group :
+                            R.drawable.support_device_debug_fan)
+            ;
             handler.postDelayed(this, 2000);
         }
     };

@@ -14,7 +14,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.Size;
 import android.view.ViewGroup;
 
@@ -54,15 +53,14 @@ public class ShadowImageView extends AppCompatImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.save();
         generateShadowBitmap();
-
         if (shadowBitmap != null) {
+            canvas.save();
             Rect bounds = getDrawable().copyBounds();
             canvas.drawBitmap(shadowBitmap, bounds.left - shadowAttribute.getRadius(), bounds.top - shadowAttribute.getRadius() / 2f, null);
+            canvas.restore();
         }
 
-        canvas.restore();
         super.onDraw(canvas);
     }
 
@@ -73,12 +71,9 @@ public class ShadowImageView extends AppCompatImageView {
         super.onAttachedToWindow();
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        Log.d(this.getClass().getName(), "finalize");
-    }
-
+    /**
+     * 產生陰影圖層。
+     */
     private void generateShadowBitmap() {
         shadowBitmap = null;
         Bitmap bitmap = getBitmapFromDrawable();
@@ -91,6 +86,10 @@ public class ShadowImageView extends AppCompatImageView {
         shadowBitmap = Bitmap.createScaledBitmap(blurBitmap, bitmap.getWidth(), bitmap.getHeight(), true);
     }
 
+    /**
+     * 從ImageView的Drawable取得Bitmap，且增加邊緣讓產生的陰影不會超出邊界。
+     * @return Bitmap
+     */
     private Bitmap getBitmapFromDrawable() {
         Drawable drawable = getDrawable();
         if (drawable == null) {
@@ -120,6 +119,11 @@ public class ShadowImageView extends AppCompatImageView {
         return bitmap;
     }
 
+    /**
+     * 取得被填色的Bitmap，當做成圖片陰影的原圖層。
+     * @param bitmap 來源
+     * @return 填色過後的Bitmap
+     */
     private Bitmap getTintBitmap(Bitmap bitmap) {
         Paint paint = new Paint();
         ColorFilter filter = new PorterDuffColorFilter(shadowAttribute.getColor(), PorterDuff.Mode.SRC_IN);
@@ -131,6 +135,11 @@ public class ShadowImageView extends AppCompatImageView {
         return tintBitmap;
     }
 
+    /**
+     * 取得模糊後的Bitmap，如果模糊的半徑大於25，則先按造比例縮小Bitmap。
+     * @param bitmap 來源
+     * @return 模糊過後的Bitmap
+     */
     private Bitmap getBlurBitmap(Bitmap bitmap) {
         float scale = shadowAttribute.getBitmapScale();
         Size bounds = new Size((int) (bitmap.getWidth() * scale), (int) (bitmap.getHeight() * scale));
