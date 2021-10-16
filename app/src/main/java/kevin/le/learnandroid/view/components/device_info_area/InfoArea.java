@@ -47,6 +47,7 @@ public abstract class InfoArea extends ConstraintLayout {
     public abstract int getIconBackgroundColor();
 
     public abstract void initSubview();
+    public abstract void updateSubview();
 
     private void init() {
         generateCenterContainer();
@@ -60,6 +61,7 @@ public abstract class InfoArea extends ConstraintLayout {
         super.onLayout(changed, left, top, right, bottom);
         if (changed) {
             updateConstraint();
+            updateSubview();
         }
     }
 
