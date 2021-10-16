@@ -14,4 +14,7 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
     <string name="uvc">UVC</string>
+
+    <string name="brightness">亮度</string>
+    <string name="color_temperature">色溫</string>
 </resources>
