@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.7" />
 
-    <kevin.le.learnandroid.view.components.device_info_area.InfoArea
+    <kevin.le.learnandroid.view.components.device_info_area.LightInfoArea
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"

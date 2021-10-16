@@ -5,52 +5,54 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.content.ContextCompat;
 
 import kevin.le.learnandroid.R;
 import kevin.le.learnandroid.view.components.shadow.ShadowAttribute;
 import kevin.le.learnandroid.view.components.shadow.ShadowConstraintLayout;
 
-public class InfoArea extends ConstraintLayout {
+public abstract class InfoArea extends ConstraintLayout {
 
     public InfoArea(@NonNull Context context) {
         super(context);
-        init(null);
+        init();
     }
 
     public InfoArea(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(attrs);
+        init();
     }
 
     public InfoArea(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(attrs);
+        init();
     }
 
     public InfoArea(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init(attrs);
+        init();
     }
 
-    private void init(@Nullable AttributeSet attrs) {
-        Log.d(this.getClass().getName(), "init");
-        constraintSet.clone(this);
+    @DrawableRes
+    public abstract int getIconId();
+    @ColorInt
+    public abstract int getIconBackgroundColor();
 
+    public abstract void initSubview();
+
+    private void init() {
         generateCenterContainer();
         generateIconBackground();
         generateIconImageView();
-
-        constraintSet.applyTo(this);
+        initSubview();
     }
 
     @Override
@@ -61,11 +63,9 @@ public class InfoArea extends ConstraintLayout {
         }
     }
 
-    private ShadowConstraintLayout centerContainer;
-    private InfoAreaIconBackground iconBackground;
-    private AppCompatImageView iconImageView;
-
-    private ConstraintSet constraintSet = new ConstraintSet();
+    public ShadowConstraintLayout centerContainer;
+    public InfoAreaIconBackground iconBackground;
+    public AppCompatImageView iconImageView;
 
     /**
      * 建立中央的容器
@@ -82,12 +82,15 @@ public class InfoArea extends ConstraintLayout {
         centerContainer.shadowAttribute = new ShadowAttribute(Color.parseColor("#38000000"), 36, new Point(0, 4));
         centerContainer.shadowDrawable.setShadowAttribute(centerContainer.shadowAttribute);
 
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(this);
         constraintSet.constrainPercentWidth(centerContainer.getId(), 0.7f);
         constraintSet.setDimensionRatio(centerContainer.getId(), "1:1");
         constraintSet.connect(centerContainer.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
         constraintSet.connect(centerContainer.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
         constraintSet.connect(centerContainer.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT);
         constraintSet.connect(centerContainer.getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT);
+        constraintSet.applyTo(this);
     }
 
     /**
@@ -100,7 +103,7 @@ public class InfoArea extends ConstraintLayout {
                 LayoutParams.MATCH_CONSTRAINT,
                 LayoutParams.MATCH_CONSTRAINT
         ));
-        iconBackground.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
+        iconBackground.setBackgroundColor(getIconBackgroundColor());
         centerContainer.addView(iconBackground);
 
         ConstraintSet constraintSet = new ConstraintSet();
@@ -121,7 +124,7 @@ public class InfoArea extends ConstraintLayout {
                 LayoutParams.MATCH_CONSTRAINT,
                 LayoutParams.MATCH_CONSTRAINT
         ));
-        iconImageView.setImageResource(R.drawable.ic_light);
+        iconImageView.setImageResource(getIconId());
         iconImageView.setColorFilter(R.color.dark_gray_2, PorterDuff.Mode.SRC_IN);
         centerContainer.addView(iconImageView);
 
@@ -134,7 +137,6 @@ public class InfoArea extends ConstraintLayout {
         constraintSet.applyTo(centerContainer);
     }
 
-    //region Update View
     /**
      * 更新約束
      */
@@ -144,11 +146,4 @@ public class InfoArea extends ConstraintLayout {
         constraintSet.connect(iconBackground.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, (int) (getHeight()*0.1));
         constraintSet.applyTo(centerContainer);
     }
-
-    private void updateViews() {
-
-    }
-    //endregion
-
-
 }
