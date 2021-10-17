@@ -17,4 +17,5 @@
 
     <string name="brightness">亮度</string>
     <string name="color_temperature">色溫</string>
+    <string name="percent" formatted="false">%d%%</string>
 </resources>

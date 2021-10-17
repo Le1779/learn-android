@@ -1,17 +1,15 @@
 package kevin.le.learnandroid.view.components.device_info_area;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
@@ -20,12 +18,11 @@ import kevin.le.learnandroid.model.Utils;
 
 public class LightInfoArea extends InfoArea {
 
-    private int brightness = 0;
-    private int colorTemperature = 0;
-
     private TextView splitSymbolTextView;
     private TextView brightnessTextView;
+    private TextView brightnessTitleTextView;
     private TextView colorTemperatureTextView;
+    private TextView colorTemperatureTitleTextView;
 
     public LightInfoArea(@NonNull Context context) {
         super(context);
@@ -62,33 +59,30 @@ public class LightInfoArea extends InfoArea {
 
     @Override
     public void updateSubview() {
+        int margin = (int) (getWidth()*0.025f);
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(centerContainer);
         constraintSet.connect(splitSymbolTextView.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, (int) (getHeight()*0.25));
-        constraintSet.connect(brightnessTextView.getId(), ConstraintSet.RIGHT, splitSymbolTextView.getId(), ConstraintSet.LEFT, (int) (getWidth()*0.01));
-        constraintSet.connect(colorTemperatureTextView.getId(), ConstraintSet.LEFT, splitSymbolTextView.getId(), ConstraintSet.RIGHT, (int) (getWidth()*0.01));
+        constraintSet.connect(brightnessTextView.getId(), ConstraintSet.RIGHT, splitSymbolTextView.getId(), ConstraintSet.LEFT, margin);
+        constraintSet.connect(colorTemperatureTextView.getId(), ConstraintSet.LEFT, splitSymbolTextView.getId(), ConstraintSet.RIGHT, margin);
         constraintSet.applyTo(centerContainer);
 
-        float fontSize = Utils.pxToSp(centerContainer.getWidth() * 0.097f);
+        float fontSize = Utils.pxToSp(centerContainer.getWidth() * 0.1f);
         splitSymbolTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         brightnessTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         colorTemperatureTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-    }
 
-    public int getBrightness() {
-        return brightness;
+        float titleFontSize = fontSize * 0.6f;
+        brightnessTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, titleFontSize);
+        colorTemperatureTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, titleFontSize);
     }
 
     public void setBrightness(int brightness) {
-        this.brightness = brightness;
-    }
-
-    public int getColorTemperature() {
-        return colorTemperature;
+        brightnessTextView.setText(String.format(getResources().getString(R.string.percent), brightness));
     }
 
     public void setColorTemperature(int colorTemperature) {
-        this.colorTemperature = colorTemperature;
+        colorTemperatureTextView.setText(String.format(getResources().getString(R.string.percent), colorTemperature));
     }
 
     /**
@@ -108,49 +102,63 @@ public class LightInfoArea extends InfoArea {
         constraintSet.applyTo(centerContainer);
     }
 
+    /**
+     * 亮度欄位
+     */
     private void initBrightnessField() {
-        brightnessTextView = new TextView(getContext());
-        brightnessTextView.setId(View.generateViewId());
-        brightnessTextView.setText("39%");
-        brightnessTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.dark_gray_2));
-        brightnessTextView.setTypeface(brightnessTextView.getTypeface(), Typeface.BOLD);
-        centerContainer.addView(brightnessTextView);
-
-        TextView title = new TextView(getContext());
-        title.setId(View.generateViewId());
-        title.setText(R.string.brightness);
-        title.setTextColor(ContextCompat.getColor(getContext(), R.color.dark_gray_4));
-        centerContainer.addView(title);
+        brightnessTextView = generateValueTextView();
+        brightnessTitleTextView = generateTitleTextView(R.string.brightness);
 
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(centerContainer);
         constraintSet.connect(brightnessTextView.getId(), ConstraintSet.TOP, splitSymbolTextView.getId(), ConstraintSet.TOP);
         constraintSet.connect(brightnessTextView.getId(), ConstraintSet.BOTTOM, splitSymbolTextView.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(title.getId(), ConstraintSet.BOTTOM, brightnessTextView.getId(), ConstraintSet.TOP);
-        constraintSet.connect(title.getId(), ConstraintSet.RIGHT, brightnessTextView.getId(), ConstraintSet.RIGHT);
+        constraintSet.connect(brightnessTitleTextView.getId(), ConstraintSet.BOTTOM, brightnessTextView.getId(), ConstraintSet.TOP);
+        constraintSet.connect(brightnessTitleTextView.getId(), ConstraintSet.RIGHT, brightnessTextView.getId(), ConstraintSet.RIGHT);
         constraintSet.applyTo(centerContainer);
     }
 
+    /**
+     * 色溫欄位
+     */
     private void initColorTemperatureField() {
-        colorTemperatureTextView = new TextView(getContext());
-        colorTemperatureTextView.setId(View.generateViewId());
-        colorTemperatureTextView.setText("70%");
-        colorTemperatureTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.dark_gray_2));
-        colorTemperatureTextView.setTypeface(brightnessTextView.getTypeface(), Typeface.BOLD);
-        centerContainer.addView(colorTemperatureTextView);
-
-        TextView title = new TextView(getContext());
-        title.setId(View.generateViewId());
-        title.setText(R.string.color_temperature);
-        title.setTextColor(ContextCompat.getColor(getContext(), R.color.dark_gray_4));
-        centerContainer.addView(title);
+        colorTemperatureTextView = generateValueTextView();
+        colorTemperatureTitleTextView = generateTitleTextView(R.string.color_temperature);
 
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(centerContainer);
         constraintSet.connect(colorTemperatureTextView.getId(), ConstraintSet.TOP, splitSymbolTextView.getId(), ConstraintSet.TOP);
         constraintSet.connect(colorTemperatureTextView.getId(), ConstraintSet.BOTTOM, splitSymbolTextView.getId(), ConstraintSet.BOTTOM);
-        constraintSet.connect(title.getId(), ConstraintSet.BOTTOM, colorTemperatureTextView.getId(), ConstraintSet.TOP);
-        constraintSet.connect(title.getId(), ConstraintSet.LEFT, colorTemperatureTextView.getId(), ConstraintSet.LEFT);
+        constraintSet.connect(colorTemperatureTitleTextView.getId(), ConstraintSet.BOTTOM, colorTemperatureTextView.getId(), ConstraintSet.TOP);
+        constraintSet.connect(colorTemperatureTitleTextView.getId(), ConstraintSet.LEFT, colorTemperatureTextView.getId(), ConstraintSet.LEFT);
         constraintSet.applyTo(centerContainer);
+    }
+
+    /**
+     * 產生Value TextView
+     * @return TextView
+     */
+    private TextView generateValueTextView() {
+        TextView textView = new TextView(getContext());
+        textView.setId(View.generateViewId());
+        textView.setText("-");
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.dark_gray_2));
+        textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        centerContainer.addView(textView);
+        return textView;
+    }
+
+    /**
+     * 產生Title TextView
+     * @param stringId 要顯示的Resource id
+     * @return TextView
+     */
+    private TextView generateTitleTextView(@StringRes int stringId) {
+        TextView textView = new TextView(getContext());
+        textView.setId(View.generateViewId());
+        textView.setText(stringId);
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.dark_gray_4));
+        centerContainer.addView(textView);
+        return textView;
     }
 }
