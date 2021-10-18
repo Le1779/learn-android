@@ -11,12 +11,10 @@ public class ShadowButton extends ShadowConstraintLayout implements View.OnTouch
 
     private final int CLICK_ACTION_THRESHOLD = 200;
     private float startX, startY;
-    private final ShadowAttribute pressedShadowAttribute;
+    public ShadowAttribute pressedShadowAttribute;
 
     public ShadowButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-
         pressedShadowAttribute = new ShadowAttribute(super.shadowColor, 15, new Point(0, 0));
         setOnTouchListener(this);
     }

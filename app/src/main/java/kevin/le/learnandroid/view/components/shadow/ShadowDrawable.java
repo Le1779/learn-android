@@ -29,6 +29,7 @@ public class ShadowDrawable extends Drawable {
     private Bitmap shadowBitmap;
     private Path boundsPath;
     private Paint boundsPathPaint;
+    private boolean clip = true;
 
 
     public ShadowDrawable(Context context, ShadowAttribute shadowAttribute) {
@@ -48,6 +49,11 @@ public class ShadowDrawable extends Drawable {
     public ShadowDrawable(Context context, ShadowAttribute shadowAttribute, int backgroundColor, float cornerRadiusRatio) {
         this(context, shadowAttribute, backgroundColor);
         this.cornerRadiusRatio = cornerRadiusRatio;
+    }
+
+    public ShadowDrawable(Context context, ShadowAttribute shadowAttribute, boolean clip) {
+        this(context, shadowAttribute);
+        this.clip = clip;
     }
 
     public void setShadowAttribute(ShadowAttribute shadowAttribute) {
@@ -75,7 +81,9 @@ public class ShadowDrawable extends Drawable {
     @Override
     public void draw(@NonNull Canvas canvas) {
         canvas.save();
-        clipCanvas(canvas);
+        if (clip) {
+            clipCanvas(canvas);
+        }
 
         if (shadowBitmap != null) {
             canvas.drawBitmap(shadowBitmap, 0f, 0f, null);

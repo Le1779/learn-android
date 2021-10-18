@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import kevin.le.learnandroid.R;
+import kevin.le.learnandroid.view.components.LightPowerButton;
 import kevin.le.learnandroid.view.components.OnOffButton;
 import kevin.le.learnandroid.view.components.UVCButton;
 
@@ -14,6 +15,7 @@ public class ButtonsActivity extends AppCompatActivity {
 
     private OnOffButton onOffButton;
     private UVCButton uvcButton;
+    private LightPowerButton lightPowerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +27,13 @@ public class ButtonsActivity extends AppCompatActivity {
 
         onOffButton = findViewById(R.id.onOffButton);
         uvcButton = findViewById(R.id.uvcButton);
+        lightPowerButton = findViewById(R.id.lightPowerButton);
 
         View.OnClickListener listener = getStatusButtonClickListener();
         onOffButton.setOnClickListener(listener);
         uvcButton.setOnClickListener(listener);
+        lightPowerButton.setOnClickListener(listener);
+
         findViewById(R.id.brightnessAndTemperatureButton).setOnClickListener(listener);
         findViewById(R.id.fanButton).setOnClickListener(listener);
     }
@@ -37,6 +42,7 @@ public class ButtonsActivity extends AppCompatActivity {
         return view -> {
             onOffButton.setOn(!onOffButton.isOn());
             uvcButton.setOn(!uvcButton.isOn());
+            lightPowerButton.setOn(!lightPowerButton.isOn());
         };
     }
 }

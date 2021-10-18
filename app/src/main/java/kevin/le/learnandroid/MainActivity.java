@@ -12,6 +12,7 @@ import java.util.List;
 
 import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
+import kevin.le.learnandroid.view.ButtonsActivity;
 import kevin.le.learnandroid.view.DeviceInfoAreaActivity;
 import kevin.le.learnandroid.view.DeviceListActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, DeviceInfoAreaActivity.class));
+        startActivity(new Intent(this, ButtonsActivity.class));
     }
 
     private void initRecyclerView() {
