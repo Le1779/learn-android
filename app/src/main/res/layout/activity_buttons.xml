@@ -20,7 +20,7 @@
         app:layout_constraintWidth_percent="0.12"
         app:tint="@color/dark_gray_2" />
 
-    <kevin.le.learnandroid.view.components.TextButton
+    <kevin.le.learnandroid.view.components.button.TextButton
         style="@style/Widget.Le.ShadowButton"
         android:id="@+id/brightnessAndTemperatureButton"
         android:layout_width="0dp"
@@ -37,7 +37,7 @@
         app:shadow_constraint_layout_shadow_color="#F4BF71"
         app:shadow_constraint_layout_shadow_radius="36" />
 
-    <kevin.le.learnandroid.view.components.TextButton
+    <kevin.le.learnandroid.view.components.button.TextButton
         style="@style/Widget.Le.ShadowButton"
         android:id="@+id/fanButton"
         android:layout_width="0dp"
@@ -54,7 +54,7 @@
         app:shadow_constraint_layout_shadow_color="#20000000"
         app:shadow_constraint_layout_shadow_radius="36" />
 
-    <kevin.le.learnandroid.view.components.OnOffButton
+    <kevin.le.learnandroid.view.components.button.OnOffButton
         android:id="@+id/onOffButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -67,7 +67,7 @@
         app:shadow_constraint_layout_corner_radius_ratio="0.25"
         app:shadow_constraint_layout_shadow_color="#20000000" />
 
-    <kevin.le.learnandroid.view.components.UVCButton
+    <kevin.le.learnandroid.view.components.button.UVCButton
         android:id="@+id/uvcButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -81,7 +81,7 @@
         app:shadow_constraint_layout_corner_radius_ratio="0.25"
         app:shadow_constraint_layout_shadow_color="#20000000" />
 
-    <kevin.le.learnandroid.view.components.LightPowerButton
+    <kevin.le.learnandroid.view.components.button.LightPowerButton
         android:id="@+id/lightPowerButton"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import kevin.le.learnandroid.R;
-import kevin.le.learnandroid.view.components.LightPowerButton;
-import kevin.le.learnandroid.view.components.OnOffButton;
-import kevin.le.learnandroid.view.components.UVCButton;
+import kevin.le.learnandroid.view.components.button.LightPowerButton;
+import kevin.le.learnandroid.view.components.button.OnOffButton;
+import kevin.le.learnandroid.view.components.button.UVCButton;
 
 public class ButtonsActivity extends AppCompatActivity {
 

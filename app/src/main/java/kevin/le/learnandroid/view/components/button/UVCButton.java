@@ -1,7 +1,6 @@
-package kevin.le.learnandroid.view.components;
+package kevin.le.learnandroid.view.components.button;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;

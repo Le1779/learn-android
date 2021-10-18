@@ -1,4 +1,4 @@
-package kevin.le.learnandroid.view.components;
+package kevin.le.learnandroid.view.components.button;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
