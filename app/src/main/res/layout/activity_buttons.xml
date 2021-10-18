@@ -90,4 +90,13 @@
         app:layout_constraintTop_toBottomOf="@+id/onOffButton"
         app:layout_constraintWidth_percent="0.18" />
 
+    <kevin.le.learnandroid.view.components.button.NightLightPowerButton
+        android:id="@+id/nightLightPowerButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintStart_toEndOf="@+id/lightPowerButton"
+        app:layout_constraintTop_toBottomOf="@+id/onOffButton"
+        app:layout_constraintWidth_percent="0.18" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
