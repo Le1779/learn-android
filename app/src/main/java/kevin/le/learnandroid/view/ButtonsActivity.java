@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import kevin.le.learnandroid.R;
+import kevin.le.learnandroid.view.components.button.AlertButton;
 import kevin.le.learnandroid.view.components.button.LightPowerButton;
 import kevin.le.learnandroid.view.components.button.NightLightPowerButton;
 import kevin.le.learnandroid.view.components.button.OnOffButton;
@@ -18,6 +19,7 @@ public class ButtonsActivity extends AppCompatActivity {
     private UVCButton uvcButton;
     private LightPowerButton lightPowerButton;
     private NightLightPowerButton nightLightPowerButton;
+    private AlertButton alertButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,14 @@ public class ButtonsActivity extends AppCompatActivity {
         uvcButton = findViewById(R.id.uvcButton);
         lightPowerButton = findViewById(R.id.lightPowerButton);
         nightLightPowerButton = findViewById(R.id.nightLightPowerButton);
+        alertButton = findViewById(R.id.alertButton);
 
         View.OnClickListener listener = getStatusButtonClickListener();
         onOffButton.setOnClickListener(listener);
         uvcButton.setOnClickListener(listener);
         lightPowerButton.setOnClickListener(listener);
         nightLightPowerButton.setOnClickListener(listener);
+        alertButton.setOnClickListener(listener);
 
         findViewById(R.id.brightnessAndTemperatureButton).setOnClickListener(listener);
         findViewById(R.id.fanButton).setOnClickListener(listener);
@@ -48,6 +52,7 @@ public class ButtonsActivity extends AppCompatActivity {
             uvcButton.setOn(!uvcButton.isOn());
             lightPowerButton.setOn(!lightPowerButton.isOn());
             nightLightPowerButton.setOn(!nightLightPowerButton.isOn());
+            alertButton.setOn(!alertButton.isOn());
         };
     }
 }
