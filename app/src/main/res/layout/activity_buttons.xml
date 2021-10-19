@@ -126,4 +126,13 @@
         app:layout_constraintTop_toBottomOf="@+id/lightPowerButton"
         app:layout_constraintWidth_percent="0.18" />
 
+    <kevin.le.learnandroid.view.components.button.TimerButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1.9"
+        app:layout_constraintStart_toStartOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/naturalWindButton"
+        app:layout_constraintWidth_percent="0.6"
+        app:shadow_constraint_layout_corner_radius_ratio="0.2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
