@@ -14,6 +14,7 @@ import kevin.le.learnandroid.view.components.button.LightPowerButton;
 import kevin.le.learnandroid.view.components.button.NaturalWindButton;
 import kevin.le.learnandroid.view.components.button.NightLightPowerButton;
 import kevin.le.learnandroid.view.components.button.OnOffButton;
+import kevin.le.learnandroid.view.components.button.TimerButton;
 import kevin.le.learnandroid.view.components.button.UVCButton;
 import kevin.le.learnandroid.view.dialog.TimerBottomSheetDialog;
 
@@ -26,6 +27,9 @@ public class ButtonsActivity extends AppCompatActivity {
     private AlertButton alertButton;
     private NaturalWindButton naturalWindButton;
     private ClockDirectionButton clockDirectionButton;
+    private TimerButton timerButton;
+    private FragmentManager fragmentManager;
+    private TimerBottomSheetDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +59,22 @@ public class ButtonsActivity extends AppCompatActivity {
         findViewById(R.id.brightnessAndTemperatureButton).setOnClickListener(listener);
         findViewById(R.id.fanButton).setOnClickListener(listener);
 
+        timerButton = findViewById(R.id.timerButton);
+        fragmentManager = getSupportFragmentManager();
+        dialog = new TimerBottomSheetDialog();
+        timerButton.setOnClickListener(view -> {
+            dialog.setListener(new TimerBottomSheetDialog.OnTimerChangeListener() {
+                @Override
+                public void onChange(long startMillis, long endMillis) {
+                    timerButton.setTime(startMillis, endMillis);
+                }
 
-
-        findViewById(R.id.timerButton).setOnClickListener(view -> {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            new TimerBottomSheetDialog().show(fragmentManager, "TimerBottomSheetDialog");
+                @Override
+                public void onClean() {
+                    timerButton.setTime(0, 0);
+                }
+            });
+            dialog.show(fragmentManager, "TimerBottomSheetDialog");
         });
     }
 

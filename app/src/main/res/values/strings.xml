@@ -24,4 +24,6 @@
     <string name="confirm">確認</string>
     <string name="clean">清除</string>
     <string name="percent" formatted="false">%d%%</string>
+    <string name="time_format" formatted="false">%02d:%02d</string>
+    <string name="timer_format" formatted="false">%s - %s</string>
 </resources>

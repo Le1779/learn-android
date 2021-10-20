@@ -9,9 +9,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+
+import java.util.concurrent.TimeUnit;
 
 import kevin.le.learnandroid.R;
 import kevin.le.learnandroid.model.Utils;
@@ -40,6 +41,19 @@ public class TimerButton extends ShadowButton {
         if (changed) {
             updateConstraint();
         }
+    }
+
+    public void setTime(long startMillis, long endMillis) {
+        if (startMillis <= 0 || endMillis <= 0) {
+            settingTime.setText(R.string.not_setting);
+            return;
+        }
+
+        settingTime.setText(String.format(
+                getResources().getString(R.string.timer_format),
+                getTimeTextFromMillis(startMillis),
+                getTimeTextFromMillis(endMillis)
+        ));
     }
 
     private void init() {
@@ -110,5 +124,13 @@ public class TimerButton extends ShadowButton {
         constraintSet.connect(icon.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, margin);
         constraintSet.connect(icon.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, margin);
         constraintSet.applyTo(this);
+    }
+
+    private String getTimeTextFromMillis(long millis) {
+        return String.format(
+                getResources().getString(R.string.time_format),
+                TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis))
+        );
     }
 }
