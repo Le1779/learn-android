@@ -19,5 +19,9 @@
 
     <string name="brightness">亮度</string>
     <string name="color_temperature">色溫</string>
+    <string name="start_time">開始時間</string>
+    <string name="end_time">結束時間</string>
+    <string name="confirm">確認</string>
+    <string name="clean">清除</string>
     <string name="percent" formatted="false">%d%%</string>
 </resources>

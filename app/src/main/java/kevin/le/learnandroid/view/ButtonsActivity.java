@@ -1,6 +1,7 @@
 package kevin.le.learnandroid.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import kevin.le.learnandroid.view.components.button.NaturalWindButton;
 import kevin.le.learnandroid.view.components.button.NightLightPowerButton;
 import kevin.le.learnandroid.view.components.button.OnOffButton;
 import kevin.le.learnandroid.view.components.button.UVCButton;
+import kevin.le.learnandroid.view.dialog.TimerBottomSheetDialog;
 
 public class ButtonsActivity extends AppCompatActivity {
 
@@ -52,6 +54,13 @@ public class ButtonsActivity extends AppCompatActivity {
 
         findViewById(R.id.brightnessAndTemperatureButton).setOnClickListener(listener);
         findViewById(R.id.fanButton).setOnClickListener(listener);
+
+
+
+        findViewById(R.id.timerButton).setOnClickListener(view -> {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            new TimerBottomSheetDialog().show(fragmentManager, "TimerBottomSheetDialog");
+        });
     }
 
     private View.OnClickListener getStatusButtonClickListener() {
