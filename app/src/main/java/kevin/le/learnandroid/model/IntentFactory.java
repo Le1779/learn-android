@@ -10,6 +10,7 @@ import kevin.le.learnandroid.view.LearnBLEActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
 import kevin.le.learnandroid.view.ShadowImageViewActivity;
 import kevin.le.learnandroid.view.SliderActivity;
+import kevin.le.learnandroid.view.WebViewActivity;
 
 public class IntentFactory {
     public Intent make(Context context, String activityName) {
@@ -27,6 +28,8 @@ public class IntentFactory {
             return new Intent(context, ShadowImageViewActivity.class);
         } else if ("DeviceInfoAreaActivity".equals(activityName)) {
             return new Intent(context, DeviceInfoAreaActivity.class);
+        } else if ("WebViewActivity".equals(activityName)) {
+            return new Intent(context, WebViewActivity.class);
         }
 
         return null;
