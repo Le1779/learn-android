@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnAndroid"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.StringConditionActivity"></activity>
+        <activity
+            android:name=".view.SpinnerActivity"
+            android:theme="@style/NoTitleBarAppTheme"
+            android:exported="false" />
+        <activity android:name=".view.StringConditionActivity" />
         <activity android:name=".view.WebViewActivity" />
         <activity android:name=".view.DeviceInfoAreaActivity" />
         <activity android:name=".view.ShadowImageViewActivity" />

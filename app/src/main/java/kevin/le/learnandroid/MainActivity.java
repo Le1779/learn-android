@@ -12,6 +12,7 @@ import java.util.List;
 
 import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
+import kevin.le.learnandroid.view.SpinnerActivity;
 import kevin.le.learnandroid.view.StringConditionActivity;
 import kevin.le.learnandroid.view.subpage_adapter.ChildItem;
 import kevin.le.learnandroid.view.subpage_adapter.GroupItem;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, StringConditionActivity.class));
+        startActivity(new Intent(this, SpinnerActivity.class));
     }
 
     private void initRecyclerView() {
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         items.add(new ChildItem(new SubpageData("DeviceListActivity", "View", "Device List")));
         items.add(new ChildItem(new SubpageData("DeviceInfoAreaActivity", "View", "Device Info Area")));
         items.add(new ChildItem(new SubpageData("WebViewActivity", "View", "WebView")));
+        items.add(new ChildItem(new SubpageData("SpinnerActivity", "View", "Spinner")));
 
         items.add(new GroupItem("Misc"));
         items.add(new ChildItem(new SubpageData("StringConditionActivity", "Feature", "String Condition")));

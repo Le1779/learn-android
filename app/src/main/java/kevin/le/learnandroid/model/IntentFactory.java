@@ -10,6 +10,7 @@ import kevin.le.learnandroid.view.LearnBLEActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
 import kevin.le.learnandroid.view.ShadowImageViewActivity;
 import kevin.le.learnandroid.view.SliderActivity;
+import kevin.le.learnandroid.view.SpinnerActivity;
 import kevin.le.learnandroid.view.StringConditionActivity;
 import kevin.le.learnandroid.view.WebViewActivity;
 
@@ -33,6 +34,8 @@ public class IntentFactory {
             return new Intent(context, WebViewActivity.class);
         } else if ("StringConditionActivity".equals(activityName)) {
             return new Intent(context, StringConditionActivity.class);
+        } else if ("SpinnerActivity".equals(activityName)) {
+            return new Intent(context, SpinnerActivity.class);
         }
 
         return null;
