@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import kevin.le.learnandroid.R;
 import kevin.le.learnandroid.view.components.spinner.LeSpinner;
-import kevin.le.learnandroid.view.components.spinner.LeSpinnerAdapter;
 
 public class SpinnerActivity extends AppCompatActivity {
 

@@ -1,13 +1,10 @@
 package kevin.le.learnandroid.view.components.spinner;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.util.AttributeSet;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +37,7 @@ public class LeSpinner extends androidx.appcompat.widget.AppCompatSpinner {
     }
 
     public void setMultiSelect(boolean isMultiSelect) {
+        this.isMultiSelect = isMultiSelect;
         if (adapter != null) {
             adapter.setMultiSelect(isMultiSelect);
         }
