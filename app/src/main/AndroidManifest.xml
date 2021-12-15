@@ -6,11 +6,16 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.NFC" />
+
     <uses-feature
         android:name="android.bluetooth_le"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +26,14 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".view.NFCActivity"
+            android:exported="false"
+            android:theme="@style/NoTitleBarAppTheme">
+        </activity>
+        <activity
             android:name=".view.SpinnerActivity"
-            android:theme="@style/NoTitleBarAppTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/NoTitleBarAppTheme" />
         <activity android:name=".view.StringConditionActivity" />
         <activity android:name=".view.WebViewActivity" />
         <activity android:name=".view.DeviceInfoAreaActivity" />

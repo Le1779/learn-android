@@ -7,6 +7,7 @@ import kevin.le.learnandroid.view.ButtonsActivity;
 import kevin.le.learnandroid.view.DeviceInfoAreaActivity;
 import kevin.le.learnandroid.view.DeviceListActivity;
 import kevin.le.learnandroid.view.LearnBLEActivity;
+import kevin.le.learnandroid.view.NFCActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
 import kevin.le.learnandroid.view.ShadowImageViewActivity;
 import kevin.le.learnandroid.view.SliderActivity;
@@ -36,6 +37,8 @@ public class IntentFactory {
             return new Intent(context, StringConditionActivity.class);
         } else if ("SpinnerActivity".equals(activityName)) {
             return new Intent(context, SpinnerActivity.class);
+        } else if ("NFCActivity".equals(activityName)) {
+            return new Intent(context, NFCActivity.class);
         }
 
         return null;

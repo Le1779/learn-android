@@ -12,6 +12,7 @@ import java.util.List;
 
 import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
+import kevin.le.learnandroid.view.NFCActivity;
 import kevin.le.learnandroid.view.SpinnerActivity;
 import kevin.le.learnandroid.view.StringConditionActivity;
 import kevin.le.learnandroid.view.subpage_adapter.ChildItem;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, SpinnerActivity.class));
+        startActivity(new Intent(this, NFCActivity.class));
     }
 
     private void initRecyclerView() {
@@ -51,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     private List<ListItem> getItems() {
         List<ListItem> items = new ArrayList<>();
-        items.add(new GroupItem("Bluetooth"));
+        items.add(new GroupItem("Wireless communication"));
         items.add(new ChildItem(new SubpageData("LearnBLEActivity", "Feature", "Learn BLE")));
+        items.add(new ChildItem(new SubpageData("NFCActivity", "Feature", "Learn NFC")));
 
         items.add(new GroupItem("UI"));
         items.add(new ChildItem(new SubpageData("ButtonsActivity", "View", "Buttons")));

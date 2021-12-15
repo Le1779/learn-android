@@ -5,9 +5,11 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.4082051282051282" />
         <entry key="../../../Library/Android/sdk/platforms/android-30/data/res/layout/simple_spinner_dropdown_item.xml" value="0.22327898550724637" />
+        <entry key="app/src/main/res/layout/activity_nfc.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/activity_scale.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/activity_spinner.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/spinner_dropdown.xml" value="0.22327898550724637" />
+        <entry key="app/src/main/res/xml/nfc_tech_filter.xml" value="0.17239583333333333" />
       </map>
     </option>
   </component>
