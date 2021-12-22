@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, EditTextActivity.class));
+        startActivity(new Intent(this, StringConditionActivity.class));
     }
 
     private void initRecyclerView() {

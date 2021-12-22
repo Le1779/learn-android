@@ -7,6 +7,7 @@ import javax.script.ScriptException;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +43,8 @@ public class StringConditionActivity extends AppCompatActivity {
     }
 
     private boolean evaluate(String condition, String value) {
-        if (condition == null || condition.isEmpty() || value == null || value.isEmpty()) {
-            return false;
-        }
+        value = "\"" + value + "\"";
+        Log.d(this.getClass().getName(), "Condition: " + condition + ", value: " + value);
 
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("rhino");
 
