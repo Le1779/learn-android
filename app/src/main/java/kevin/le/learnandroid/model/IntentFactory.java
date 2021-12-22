@@ -6,6 +6,7 @@ import android.content.Intent;
 import kevin.le.learnandroid.view.ButtonsActivity;
 import kevin.le.learnandroid.view.DeviceInfoAreaActivity;
 import kevin.le.learnandroid.view.DeviceListActivity;
+import kevin.le.learnandroid.view.EditTextActivity;
 import kevin.le.learnandroid.view.LearnBLEActivity;
 import kevin.le.learnandroid.view.NFCActivity;
 import kevin.le.learnandroid.view.ScaleActivity;
@@ -39,6 +40,8 @@ public class IntentFactory {
             return new Intent(context, SpinnerActivity.class);
         } else if ("NFCActivity".equals(activityName)) {
             return new Intent(context, NFCActivity.class);
+        } else if ("EditTextActivity".equals(activityName)) {
+            return new Intent(context, EditTextActivity.class);
         }
 
         return null;

@@ -12,6 +12,7 @@ import java.util.List;
 
 import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
+import kevin.le.learnandroid.view.EditTextActivity;
 import kevin.le.learnandroid.view.NFCActivity;
 import kevin.le.learnandroid.view.SpinnerActivity;
 import kevin.le.learnandroid.view.StringConditionActivity;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, NFCActivity.class));
+        startActivity(new Intent(this, EditTextActivity.class));
     }
 
     private void initRecyclerView() {
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         items.add(new GroupItem("UI"));
         items.add(new ChildItem(new SubpageData("ButtonsActivity", "View", "Buttons")));
+        items.add(new ChildItem(new SubpageData("EditTextActivity", "View", "EditText")));
         items.add(new ChildItem(new SubpageData("SliderActivity", "View", "Slider")));
         items.add(new ChildItem(new SubpageData("ScaleActivity", "View", "Scale")));
         items.add(new ChildItem(new SubpageData("ShadowImageViewActivity", "View", "Shadow ImageView")));

@@ -5,14 +5,12 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature
         android:name="android.bluetooth_le"
         android:required="true" />
-
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
@@ -26,10 +24,13 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".view.EditTextActivity"
+            android:exported="false"
+            android:theme="@style/NoTitleBarAppTheme" />
+        <activity
             android:name=".view.NFCActivity"
             android:exported="false"
-            android:theme="@style/NoTitleBarAppTheme">
-        </activity>
+            android:theme="@style/NoTitleBarAppTheme" />
         <activity
             android:name=".view.SpinnerActivity"
             android:exported="false"
