@@ -21,4 +21,17 @@
         app:tint="@color/dark_gray_2"
         tools:ignore="ContentDescription" />
 
+    <kevin.le.learnandroid.view.components.auto_complete.LeAutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
