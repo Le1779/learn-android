@@ -14,6 +14,7 @@ import kevin.le.learnandroid.model.IntentFactory;
 import kevin.le.learnandroid.model.SubpageData;
 import kevin.le.learnandroid.view.EditTextActivity;
 import kevin.le.learnandroid.view.NFCActivity;
+import kevin.le.learnandroid.view.SliderActivity;
 import kevin.le.learnandroid.view.SpinnerActivity;
 import kevin.le.learnandroid.view.StringConditionActivity;
 import kevin.le.learnandroid.view.subpage_adapter.ChildItem;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initRecyclerView();
-        startActivity(new Intent(this, EditTextActivity.class));
+        startActivity(new Intent(this, SliderActivity.class));
     }
 
     private void initRecyclerView() {

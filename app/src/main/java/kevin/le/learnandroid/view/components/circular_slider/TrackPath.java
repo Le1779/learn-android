@@ -7,7 +7,6 @@ import android.graphics.RectF;
 import kevin.le.learnandroid.model.angle.Angle;
 import kevin.le.learnandroid.model.angle.AngleRange;
 
-
 public class TrackPath {
 
     public Path path;
@@ -49,11 +48,21 @@ public class TrackPath {
      * @return 滑動的度數
      */
     public int getOriginAngle(int angle) {
+        int originAngle;
         if (angle < this.angleRange.begin.value) {
-            return angle + 360 - this.angleRange.begin.value;
+            originAngle = angle + 360 - this.angleRange.begin.value;
+        } else {
+            originAngle = angle - this.angleRange.begin.value;
         }
 
-        return angle - this.angleRange.begin.value;
+        if (originAngle > this.angleRange.sweep.value) {
+            int overvalue = 360 - this.angleRange.sweep.value;
+            if (originAngle > (overvalue/2 + this.angleRange.sweep.value)) {
+                originAngle = originAngle - 360;
+            }
+        }
+
+        return originAngle;
     }
 
     /**

@@ -24,10 +24,9 @@ public class CircularSlider extends View implements View.OnTouchListener {
     private TrackDrawable trackDrawable;
     private AngleRange angleRange = new AngleRange(0, 180);
     private boolean clockwise = false;
-    private int currentAngle = 0;
     private OnCircularSliderChangeListener listener;
-
     private int strokeWidth;
+    private float value = 0;
 
     public CircularSlider(Context context) {
         this(context, null);
@@ -49,7 +48,6 @@ public class CircularSlider extends View implements View.OnTouchListener {
             typedArray.recycle();
 
             angleRange = new AngleRange(beginAngle, sweepAngle);
-            currentAngle = clockwise ? (beginAngle + sweepAngle) : beginAngle;
 
             trackPath = new TrackPath(angleRange);
             trackDrawable = new TrackDrawable(strokeWidth, strokeColor);
@@ -58,11 +56,8 @@ public class CircularSlider extends View implements View.OnTouchListener {
     }
 
     public void setValue(float value) {
-        float value1 = Math.round(value * 100) / 100f;
+        this.value = Math.round(value * 100) / 100f;
         updateThumbView();
-        if (listener != null) {
-            listener.onValueChange(this, value1);
-        }
     }
 
     public void setOnCircularSliderChangeListener(OnCircularSliderChangeListener listener) {
@@ -95,6 +90,14 @@ public class CircularSlider extends View implements View.OnTouchListener {
         }
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (thumb != null) {
+            thumb.setVisibility(enabled ? VISIBLE : INVISIBLE);
+        }
+    }
+
     /**
      * 觸碰事件，只有點擊在Thumb上面才觸發事件。
      * @param view 這個View
@@ -110,7 +113,7 @@ public class CircularSlider extends View implements View.OnTouchListener {
         int angle = trackPath.getAngleFromPoint(touchPoint);
         int originAngle = trackPath.getOriginAngle(angle);
         float rate = (float) originAngle / angleRange.sweep.value;
-        if (clockwise) {
+        if (!clockwise) {
             rate = 1 - rate;
         }
 
@@ -120,9 +123,15 @@ public class CircularSlider extends View implements View.OnTouchListener {
                 int relativeY = (int) (y + this.getY() + ((View)getParent()).getY());
                 return thumb.getBounds().contains(relativeX, relativeY);
             case MotionEvent.ACTION_MOVE:
-                if (rate >= 0 && rate <=1) {
-                    currentAngle = angle;
-                    this.setValue(rate);
+                if (rate < 0) {
+                    rate = 0;
+                } else if (rate > 1) {
+                    rate = 1;
+                }
+
+                this.setValue(rate);
+                if (listener != null) {
+                    listener.onValueChange(this, this.value);
                 }
                 break;
         }
@@ -156,6 +165,13 @@ public class CircularSlider extends View implements View.OnTouchListener {
     private void updateThumbView() {
         if (thumb == null) {
             return;
+        }
+
+        int currentAngle;
+        if (clockwise) {
+            currentAngle = (int) (angleRange.begin.value + angleRange.sweep.value * value);
+        } else {
+            currentAngle = (int) (angleRange.begin.value + angleRange.sweep.value * (1 - value));
         }
 
         Point thumbCenterPointer = trackPath.getPointFromAngle(currentAngle);
