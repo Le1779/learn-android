@@ -13,7 +13,7 @@ public class TrackPath {
     private RectF bounds;
     private final AngleRange angleRange;
     private float radius;
-    private Point centerPoint;
+    private Point centerPoint = new Point(0, 0);
 
     public TrackPath(AngleRange angleRange) {
         this.angleRange = angleRange;
